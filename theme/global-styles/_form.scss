@@ -1,0 +1,53 @@
+@use "../global-styles/color";
+label {
+  display: block;
+  letter-spacing: 0.25em;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+input {
+  box-sizing: border-box;
+  padding: 0;
+  border: 0;
+  font-size: 1rem;
+  padding: 14px 17px;
+  color: $primary-300;
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+}
+
+input::-webkit-input-placeholder {
+  color: $primary-200;
+}
+
+::-moz-placeholder {
+  color: $primary-200;
+}
+
+:-ms-input-placeholder {
+  /** notice that ie has only a single colon) */
+  color: $primary-200;
+}
+
+::-webkit-input-placeholder {
+  color: $primary-200;
+}
+
+::placeholder {
+  color: $primary-200;
+}
+
+select {
+  padding: 0;
+  border: 0;
+  font-size: 1rem;
+  padding: 14px 17px;
+  color: $primary-300;
+  background: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+}

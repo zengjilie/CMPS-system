@@ -1,24 +1,12 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
+import { useForm } from "../../lib/hooks/useForm";
+import Signup from "../../components/SignUp/Signup";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  //test data
-  const schools = ["A小学", "B小学"];
-  const grades = ["一年级", "二年级"];
-  const classes = ["1班", "2班"];
-
-  //
-  // handle submit form
-  async function formHandler(e: any) {
-    e.preventDefault();
-
-    //check inputs
-    console.log("test");
-  }
-
   return (
     <>
       <Head>
@@ -27,57 +15,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <div>
-        <h2>创造力数学问题解决线上测试</h2>
-        <h4>请填写以下信息</h4>
-        <form action="submit" onSubmit={formHandler}>
-          <label htmlFor="school">学校</label>
-          <select id="school" name="school" value={"请选择你所在的学校"}>
-            {schools.map((school, id) => (
-              <option key={id} value={"school"}>
-                {school}
-              </option>
-            ))}
-          </select>
-
-          <label htmlFor="grade">年级</label>
-          <select id="grade" name="grade" value={"请选择你所在的年级"}>
-            {grades.map((grade, id) => (
-              <option key={id} value={"grade"}>
-                {grade}
-              </option>
-            ))}
-          </select>
-
-          <label htmlFor="class">班级</label>
-          <select id="class" name="class" value={"请选择你所在的班级"}>
-            {classes.map((claz, id) => (
-              <option key={id} value={"class"}>
-                {claz}
-              </option>
-            ))}
-          </select>
-
-          <label htmlFor="fullname">姓名</label>
-          <input
-            type="text"
-            id="fullname"
-            name="fullname"
-            value={"请输入你的姓名"}
-          />
-
-          <label htmlFor="schoolId">学号</label>
-          <input
-            type="text"
-            id="schoolId"
-            name="fullname"
-            value={"请输入你的学号"}
-          />
-
-          <button type="submit">登录</button>
-        </form>
-      </div>
+      <Signup />
     </>
   );
 }

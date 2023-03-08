@@ -1,0 +1,67 @@
+@use "../../theme/global-styles/color" as *;
+
+.signup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 390px;
+  margin: auto;
+  margin-top: 100px;
+  .signup-header {
+    margin-bottom: 24px;
+  }
+
+  .signup-subheader {
+    color: $primary-300;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    fieldset {
+      margin: 10px 0;
+      padding: 0;
+      border: 0;
+      width: 100%;
+
+      label {
+        width: 100%;
+      }
+
+      select {
+        width: 100%;
+      }
+      input {
+        width: 100%;
+      }
+
+      small {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.signup-btn {
+  margin: 30px 0;
+  width: 100%;
+  padding: 14px;
+  background: $accent-default;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    background: $accent-hover;
+  }
+}
+
+.error {
+  display: block;
+  width: 100%;
+  color: $error;
+}
