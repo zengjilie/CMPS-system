@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { useForm } from "../../lib/hooks/useForm";
 import { validateForm } from "./validatSignUpForm";
 import styles from "./SignUp.module.scss";
+import { useRouter } from "next/router";
 
 function Signup() {
   const [errors, setErrors] = useState<any>({});
+  const router = useRouter();
 
   // Limited Options the user can select
   const schools = ["A小学", "B小学"];
@@ -34,9 +36,12 @@ function Signup() {
     } else {
       console.log("inputs", inputs);
 
+      //Update redux store
+
       // update the database
 
       //direct the user to the next page
+      router.push("/consent");
     }
   };
 

@@ -1,0 +1,32 @@
+@use "../../theme/global-styles/color" as *;
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background: $primary-50;
+  border-bottom: 1px solid $primary-100;
+
+  .header-time {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .header-avatar {
+    width: 60px;
+    height: 60px;
+    background: black;
+    color: white;
+    border-radius: 33px;
+
+    .header-name {
+      line-height: 60px;
+      font-weight: normal;
+      text-align: center;
+    }
+  }
+}
