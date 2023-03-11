@@ -13,7 +13,7 @@ function Header() {
       <h2>创造力数学问题解决</h2>
       <div className={styles["header-time"]}>
         <Clock width="44" height="auto" />
-        <h4>{time}</h4>
+        <h5>{time}</h5>
       </div>
       <div className={styles["header-avatar"]}>
         <h3 className={styles["header-name"]}>{firstname}</h3>
