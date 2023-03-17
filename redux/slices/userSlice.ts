@@ -1,10 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { UserState } from "../../types";
 
-interface UserState {
-  fullname: string;
-}
 const initialState: UserState = {
-  fullname: "",
+  // fullname: "",
+  fullname: "曾及洌",
 };
 
 const userSlice = createSlice({

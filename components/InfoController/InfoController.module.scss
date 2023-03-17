@@ -1,0 +1,39 @@
+@use "../../theme/global-styles/color" as *;
+
+.info-controller {
+  display: inline-block;
+  background: white;
+  border-left: 1px solid #cccccc;
+  width: 100%;
+  height: 50%;
+
+  .info-header {
+    padding: 33px 35px;
+    border-bottom: 1px solid $primary-100;
+
+    h4 {
+      color: $primary-300;
+      font-weight: bold;
+    }
+  }
+
+  .info-body {
+    display: flex;
+    height: 100%;
+
+    .info-nav {
+      height: 100%;
+      width: 100px;
+      border-right: 1px solid #cccccc;
+
+      .info-nav-item {
+        padding: 10px;
+        font-size: 0.9rem;
+      }
+    }
+
+    .info-content {
+      padding: 10px;
+    }
+  }
+}

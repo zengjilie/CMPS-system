@@ -1,20 +1,17 @@
 import React, { useState } from "react";
 import styles from "./Header.module.scss";
-import Clock from "../Icon/Clock";
+import { useSelector } from "react-redux";
 
 function Header() {
   const [time, setTime] = useState("00:00:00");
+  const { fullname } = useSelector((state: any) => state.user);
+
   //Get user first name from redux
-  const fullname = "曾及洌";
   const firstname = fullname[0];
 
   return (
     <header className={styles.header}>
       <h2>创造力数学问题解决</h2>
-      <div className={styles["header-time"]}>
-        <Clock width="44" height="auto" />
-        <h5>{time}</h5>
-      </div>
       <div className={styles["header-avatar"]}>
         <h3 className={styles["header-name"]}>{firstname}</h3>
       </div>

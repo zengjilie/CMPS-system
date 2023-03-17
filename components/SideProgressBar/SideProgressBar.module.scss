@@ -2,9 +2,10 @@
 
 .sidenav-bar {
   display: inline-block;
+  position: relative;
   background: white;
   border-right: 1px solid #cccccc;
-  height: calc(100% - 101px);
+  height: 100%;
 
   .sidenav-header {
     padding: 33px 35px;

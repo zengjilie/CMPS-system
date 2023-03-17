@@ -3,13 +3,14 @@ import type { AppProps } from "next/app";
 import { wrapper } from "../../redux/store";
 import { Provider } from "react-redux";
 
-function MyApp({ Component, ...rest }: AppProps) {
+export default function MyApp({ Component, ...rest }: AppProps) {
   const { store, props } = wrapper.useWrappedStore(rest);
+
+  //@ts-ignore
+  const getLayout = Component.getLayout || ((page: React.ReactNode) => page);
   return (
     <Provider store={store}>
-      <Component {...props.pageProps} />
+      {getLayout(<Component {...props.pageProps} />)}
     </Provider>
   );
 }
-
-export default MyApp;

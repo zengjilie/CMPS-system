@@ -4,6 +4,7 @@ import { validateForm } from "./validatSignUpForm";
 import styles from "./SignUp.module.scss";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import setTokenCookie from "@/pages/auth/setTokenCookie";
 
 function Signup() {
   const [errors, setErrors] = useState<any>({});
@@ -20,7 +21,7 @@ function Signup() {
   const classes = ["1班", "2班"];
   const sexes = ["男", "女"];
 
-  // dynamically update inputs using useForm custom hook
+  // Dynamically update inputs using useForm custom hook
   const { inputs, handleChange } = useForm({
     school: schools[0],
     grade: grades[0],
@@ -34,7 +35,7 @@ function Signup() {
   const formHandler = async (e: any) => {
     e.preventDefault();
 
-    //check inputs error
+    // Check inputs error
     const errors = validateForm(inputs);
     if (Object.keys(errors).length !== 0) {
       setErrors(errors);
@@ -42,11 +43,19 @@ function Signup() {
     } else {
       console.log("inputs", inputs);
 
-      //Update redux store
+      //Check if User already exist in our database
+      //If NOT
+      //Add user info to database)
 
-      // update the database
+      //Get StudentId in return
 
-      //direct the user to the next page
+      //Set cookie
+      const StudentId = "1";
+      setTokenCookie(StudentId);
+
+      //Update task redux store
+
+      //Direct the user to the next page
       router.push("/consent");
     }
   };
@@ -146,3 +155,8 @@ function Signup() {
 }
 
 export default Signup;
+
+export async function getServerSideProps() {
+  // check authetication for user
+  // if cookie
+}

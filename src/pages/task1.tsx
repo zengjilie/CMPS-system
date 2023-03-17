@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React from "react";
 import Header from "../../components/Header/Header";
-import SideProgressBar from "../../components/SideNav/SideProgressBar";
+import SideProgressBar from "../../components/SideProgressBar/SideProgressBar";
 
 function task1() {
   return (

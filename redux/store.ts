@@ -2,10 +2,12 @@ import { Store, combineReducers, configureStore } from "@reduxjs/toolkit";
 import { MakeStore, createWrapper, Context, HYDRATE } from "next-redux-wrapper";
 import tasks from "./slices/taskSlice";
 import user from "./slices/userSlice";
+import info from "./slices/infoSlice";
 
 const allReducers = combineReducers({
   tasks,
   user,
+  info,
 });
 
 const masterReducer = (state: any, action: any) => {

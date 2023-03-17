@@ -1,33 +1,17 @@
 import React, { useState } from "react";
-import styles from "./SideNav.module.scss";
+import styles from "./SideProgressBar.module.scss";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import { TaskState } from "../../types";
 
 function SideProgressBar() {
   const [submit, setSubmit] = useState(false);
   const router = useRouter();
+  const tasks: TaskState[] = useSelector((state: any) => state.tasks);
 
   const path = router.asPath;
   // when click submit, check if this task is already finished, if true it means you are modify your answer, modal pops up
-
-  // false redux data
-  const tasks = {
-    task1: {
-      finished: true,
-      current: false,
-      name: "问题一",
-    },
-    task2: {
-      finished: false,
-      current: true,
-      name: "问题二",
-    },
-    task3: {
-      finished: false,
-      current: false,
-      name: "问题三",
-    },
-  };
 
   //check the progress of each task
   const progressChecker = (task: any) => {
@@ -72,41 +56,19 @@ function SideProgressBar() {
 
       <div className={styles["sidenav-controller"]}>
         <ul className={styles["sidenav-items"]}>
-          <li>
-            <Link href="/task1">
-              <h4
-                className={`${styles["sidenav-text"]} ${
-                  styles[progressChecker(tasks.task1)]
-                }`}
-              >
-                {tasks.task1.name}
-              </h4>
-            </Link>
-          </li>
-
-          <li>
-            <Link href="/task2">
-              <h4
-                className={`${styles["sidenav-text"]} ${
-                  styles[progressChecker(tasks.task2)]
-                }`}
-              >
-                {tasks.task2.name}
-              </h4>
-            </Link>
-          </li>
-
-          <li>
-            <Link href="/task3">
-              <h4
-                className={`${styles["sidenav-text"]} ${
-                  styles[progressChecker(tasks.task3)]
-                }`}
-              >
-                {tasks.task3.name}
-              </h4>
-            </Link>
-          </li>
+          {tasks.map((task, i) => (
+            <li key={i}>
+              <Link href="/task1">
+                <h4
+                  className={`${styles["sidenav-text"]} ${
+                    styles[progressChecker(tasks[i])]
+                  }`}
+                >
+                  {tasks[i].taskname}
+                </h4>
+              </Link>
+            </li>
+          ))}
         </ul>
 
         <div className={styles["sidenav-btns"]}>
