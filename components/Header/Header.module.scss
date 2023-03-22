@@ -5,28 +5,22 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
+  padding: 10px;
   background: $primary-50;
   border-bottom: 1px solid $primary-100;
 
-  .header-time {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 18px;
-  }
-
   .header-avatar {
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     background: black;
     color: white;
     border-radius: 33px;
 
     .header-name {
-      line-height: 60px;
+      line-height: 40px;
       font-weight: normal;
       text-align: center;
+      font-size: 1.1rem;
     }
   }
 }

@@ -3,12 +3,12 @@ import styles from "./SideProgressBar.module.scss";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import { TaskState } from "../../types";
+import { TaskType } from "../../types";
 
 function SideProgressBar() {
   const [submit, setSubmit] = useState(false);
   const router = useRouter();
-  const tasks: TaskState[] = useSelector((state: any) => state.tasks);
+  const tasks: TaskType[] = useSelector((state: any) => state.tasks.allTasks);
 
   const path = router.asPath;
   // when click submit, check if this task is already finished, if true it means you are modify your answer, modal pops up
@@ -58,13 +58,13 @@ function SideProgressBar() {
         <ul className={styles["sidenav-items"]}>
           {tasks.map((task, i) => (
             <li key={i}>
-              <Link href="/task1">
+              <Link href={`/task${i + 1}`}>
                 <h4
                   className={`${styles["sidenav-text"]} ${
                     styles[progressChecker(tasks[i])]
                   }`}
                 >
-                  {tasks[i].taskname}
+                  {task.taskname}
                 </h4>
               </Link>
             </li>

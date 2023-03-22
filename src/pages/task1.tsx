@@ -1,7 +1,6 @@
-import Head from "next/head";
 import React from "react";
-import Header from "../../components/Header/Header";
-import SideProgressBar from "../../components/SideProgressBar/SideProgressBar";
+import Head from "next/head";
+import Layout from "../../components/Layout";
 
 function task1() {
   return (
@@ -9,11 +8,13 @@ function task1() {
       <Head>
         <title>CMPS | Task1</title>
       </Head>
-      <Header />
-      <SideProgressBar />
-      <div>task1</div>
+      <div>task 1</div>
     </>
   );
 }
+
+task1.getLayout = function getLayout(page: React.ReactNode) {
+  return <Layout>{page}</Layout>;
+};
 
 export default task1;

@@ -2,12 +2,18 @@ import { Store, combineReducers, configureStore } from "@reduxjs/toolkit";
 import { MakeStore, createWrapper, Context, HYDRATE } from "next-redux-wrapper";
 import tasks from "./slices/taskSlice";
 import user from "./slices/userSlice";
-import info from "./slices/infoSlice";
+import movieInfo from "./slices/movieInfoSlice";
+import tentInfo from "./slices/tentInfoSlice";
+import notes from "./slices/noteSlice";
+import scrolls from "./slices/scrollSlice";
 
 const allReducers = combineReducers({
   tasks,
   user,
-  info,
+  movieInfo,
+  tentInfo,
+  notes,
+  scrolls,
 });
 
 const masterReducer = (state: any, action: any) => {
@@ -24,7 +30,9 @@ const masterReducer = (state: any, action: any) => {
 };
 
 const makeStore = (context: Context) => {
-  return configureStore({ reducer: masterReducer });
+  return configureStore({
+    reducer: masterReducer,
+  });
 };
 
 export const wrapper = createWrapper<Store<any>>(makeStore, { debug: true });

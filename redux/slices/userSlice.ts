@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { UserState } from "../../types";
 
 const initialState: UserState = {
@@ -10,9 +10,12 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    setFullname: (state: UserState, action: any) => {
+    setFullname: (
+      state: UserState,
+      { payload }: PayloadAction<{ fullname: string }>
+    ) => {
       //set fullname
-      state.fullname = action.payload.fullname;
+      state.fullname = payload.fullname;
     },
   },
 });

@@ -4,36 +4,44 @@
   display: inline-block;
   background: white;
   border-left: 1px solid #cccccc;
+  height: 70%;
   width: 100%;
-  height: 50%;
 
   .info-header {
-    padding: 33px 35px;
+    display: flex;
+    padding: 10px;
+    gap: 20px;
     border-bottom: 1px solid $primary-100;
 
     h4 {
-      color: $primary-300;
       font-weight: bold;
     }
   }
 
   .info-body {
     display: flex;
-    height: 100%;
-
-    .info-nav {
-      height: 100%;
-      width: 100px;
-      border-right: 1px solid #cccccc;
-
-      .info-nav-item {
-        padding: 10px;
-        font-size: 0.9rem;
-      }
-    }
+    height: calc(100% - 48px);
 
     .info-content {
-      padding: 10px;
+      display: flex;
+      height: 100%;
+      width: 100%;
+      overflow-y: scroll;
+    }
+
+    .chat-content {
+      height: 100%;
+      width: 100%;
     }
   }
+}
+
+.on {
+  cursor: pointer;
+  color: $primary-300;
+  font-weight: bold;
+}
+.off {
+  cursor: pointer;
+  color: $primary-100;
 }

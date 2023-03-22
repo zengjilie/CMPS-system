@@ -12,7 +12,7 @@ export default function Consent({ token }: any) {
       <Head>
         <title>CMPS | Consent</title>
       </Head>
-      <div>task</div>
+      <div>consent</div>
     </>
   );
 }

@@ -1,0 +1,35 @@
+@use "../../theme/global-styles/color" as *;
+
+.note-card {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid $primary-100;
+
+  &:hover {
+    background: $primary-60;
+  }
+
+  &:hover input {
+    background: $primary-60;
+  }
+
+  input {
+    flex: 18;
+    border: none;
+    border-radius: 0;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  svg {
+    cursor: pointer;
+    flex: 1;
+    fill: $primary-200;
+    &:hover {
+      fill: $primary-300;
+    }
+  }
+}

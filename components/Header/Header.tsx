@@ -11,7 +11,7 @@ function Header() {
 
   return (
     <header className={styles.header}>
-      <h2>创造力数学问题解决</h2>
+      <h2>数学测试系统</h2>
       <div className={styles["header-avatar"]}>
         <h3 className={styles["header-name"]}>{firstname}</h3>
       </div>

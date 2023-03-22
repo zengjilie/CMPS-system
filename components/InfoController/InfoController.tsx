@@ -1,34 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./InfoController.module.scss";
 import { InfoState } from "../../types";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentMovieInfo } from "../../redux/slices/movieInfoSlice";
+import Chat from "../Chat/Chat";
+import Info from "../Info/Info";
 
 function InfoController() {
-  const infos: InfoState[] = useSelector((state: any) => state.info);
+  const [chatToggle, setChatToggle] = useState(true); // check whether the section is chat or info
+  const [chatType, setChatType] = useState(true); // check whether the chat content is movie:true or tent:false
+  const [infoType, setInfoType] = useState(true); // chekc whether the info is movie:true or tent:false
 
   return (
     <div className={styles["info-controller"]}>
       <div className={styles["info-header"]}>
-        <h4>信息中心</h4>
+        <h4
+          className={chatToggle ? styles.on : styles.off}
+          onClick={() => setChatToggle(!chatToggle)}
+        >
+          聊天记录
+        </h4>
+        <h4
+          className={!chatToggle ? styles.on : styles.off}
+          onClick={() => setChatToggle(!chatToggle)}
+        >
+          信息中心
+        </h4>
       </div>
+
       <div className={styles["info-body"]}>
-        <div className={styles["info-nav"]}>
-          <ul>
-            {infos.map((info, i) => (
-              <li
-                key={i}
-                className={styles["info-nav-item"]}
-                value={i}
-                style={info.on ? { color: "black" } : { color: "grey" }}
-              >
-                {info.name}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className={styles["info-content"]}>
-          {/* conditionally render the content */}
-        </div>
+        {chatToggle ? (
+          <div className={styles["chat-content"]}>
+            {chatType ? <Chat type="movie" /> : <Chat type="tent" />}
+          </div>
+        ) : (
+          <div className={styles["info-content"]}>
+            {infoType ? <Info type="movie" /> : <Info type="tent" />}
+          </div>
+        )}
       </div>
     </div>
   );
