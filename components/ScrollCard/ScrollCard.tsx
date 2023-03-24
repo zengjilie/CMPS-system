@@ -9,7 +9,7 @@ import {
 } from "../../redux/slices/scrollSlice";
 import Delete from "../Icon/Delete";
 
-const rowHeaders: ScrollHeaderType[] = scrollHeader;
+const rowHeaders: ScrollHeaderType = scrollHeader;
 
 function ScrollCard({ scrollId, allValues }: ScrollRowType) {
   const dispatch = useDispatch();
@@ -27,21 +27,25 @@ function ScrollCard({ scrollId, allValues }: ScrollRowType) {
         type="number"
         onChange={(e) => changeHandler(e, 1)}
         value={allValues.type1}
+        min="0"
       />
       <input
         type="number"
         onChange={(e) => changeHandler(e, 2)}
         value={allValues.type2}
+        min="0"
       />
       <input
         type="number"
         onChange={(e) => changeHandler(e, 3)}
         value={allValues.type3}
+        min="0"
       />
       <input
         type="number"
         onChange={(e) => changeHandler(e, 4)}
         value={allValues.type4}
+        min="0"
       />
       <input type="text" value={allValues.totalprice} readOnly={true} />
       <div className={styles["scroll-card-delete"]}>

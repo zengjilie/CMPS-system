@@ -27,10 +27,11 @@ export interface noteState {
   allNotes: NoteType[];
 }
 
-export interface ScrollHeaderType {
+export type ScrollHeaderType = {
   name: string;
   price: number;
-}
+}[];
+
 export interface ScrollRowType {
   scrollId: string;
   allValues: {
@@ -43,4 +44,25 @@ export interface ScrollRowType {
 }
 export interface ScrollState {
   allScrolls: ScrollRowType[];
+}
+
+export type DropdownHeaderType = {
+  names: string[];
+  movies: string[];
+  schedules: string[][];
+  dates: string[];
+  types: string[];
+};
+export interface DropdownRowType {
+  dropdownId: string;
+  allValues: {
+    movie: string;
+    schedule: string;
+    date: string;
+    type: string;
+    totalprice: string;
+  };
+}
+export interface DropdownState {
+  allDropdowns: DropdownRowType[];
 }

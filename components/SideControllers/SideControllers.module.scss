@@ -1,7 +1,22 @@
+@use "../../theme/global-styles/color" as *;
+
 .side-controllers {
   display: flex;
-  flex-direction: column;
-  //   max-width: 600px;
   width: 800px;
   height: 100%;
+
+  .dragme {
+    cursor: col-resize;
+    height: 100%;
+    width: 5px;
+    background: $primary-60;
+    border-left: 1px solid $primary-100;
+  }
+
+  .side-controllers-items {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+  }
 }

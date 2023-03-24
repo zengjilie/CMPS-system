@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { ScrollHeaderType, ScrollRowType, ScrollState } from "../../types";
 
-export const scrollHeader: ScrollHeaderType[] = [
+export const scrollHeader: ScrollHeaderType = [
   { name: "类型一", price: 1 },
   { name: "类型二", price: 1 },
   { name: "类型三", price: 1 },

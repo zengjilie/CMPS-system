@@ -11,7 +11,7 @@ function Info({ type }: { type: string }) {
 
   if (type === "movie") {
     return (
-      <>
+      <div className={styles["info"]}>
         <div className={styles["info-nav"]}>
           <ul>
             {movieInfos.map((info, i) => (
@@ -43,7 +43,7 @@ function Info({ type }: { type: string }) {
           {movieInfos[4].on && <div>image4</div>}
           {movieInfos[5].on && <div>image5</div>}
         </div>
-      </>
+      </div>
     );
   } else {
     return <div>Info tent</div>;

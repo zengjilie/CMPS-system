@@ -6,6 +6,7 @@ import movieInfo from "./slices/movieInfoSlice";
 import tentInfo from "./slices/tentInfoSlice";
 import notes from "./slices/noteSlice";
 import scrolls from "./slices/scrollSlice";
+import dropdowns from "./slices/dropdownSlice";
 
 const allReducers = combineReducers({
   tasks,
@@ -14,6 +15,7 @@ const allReducers = combineReducers({
   tentInfo,
   notes,
   scrolls,
+  dropdowns,
 });
 
 const masterReducer = (state: any, action: any) => {

@@ -11,11 +11,9 @@ type AppProps = {
 };
 
 function NoteCard({ noteId, text }: AppProps) {
-  const [input, setInput] = useState(text);
   const dispatch = useDispatch();
 
   const inputHander = (e: any) => {
-    setInput(e.target.value);
     dispatch(updateNote({ noteId, text: e.target.value }));
   };
 
@@ -23,7 +21,7 @@ function NoteCard({ noteId, text }: AppProps) {
     <div className={styles["note-card"]}>
       <input
         type="text"
-        value={input}
+        value={text}
         placeholder="请输入..."
         onChange={(e: any) => inputHander(e)}
       />

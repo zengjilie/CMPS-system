@@ -7,13 +7,14 @@ import Plus from "../Icon/Plus";
 import { v4 as uuidv4 } from "uuid";
 import { addScroll, scrollHeader } from "../../redux/slices/scrollSlice";
 
-const rowHeaders: ScrollHeaderType[] = scrollHeader;
+const rowHeaders: ScrollHeaderType = scrollHeader;
 
 function ScrollMenuController() {
   const dispatch = useDispatch();
   const scrolls: ScrollRowType[] = useSelector(
     (state: any) => state.scrolls.allScrolls
   );
+
   return (
     <div className={styles["scrolls-controller"]}>
       <div className={styles["scrolls-header"]}>
