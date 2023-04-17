@@ -4,11 +4,12 @@ import { InfoState } from "../../types";
 const initialState: InfoState = {
   allInfos: [
     { name: "天气预报", on: true },
-    { name: "五一劳动节放假通知", on: false },
-    { name: "五一劳动节的发展历史", on: false },
-    { name: "电影院观影注意事项", on: false },
-    { name: "天悦电影院的场次安排表", on: false },
-    { name: "五一劳动节期间上映影片简介", on: false },
+    { name: "露营装备清单", on: false },
+    { name: "露营地点介绍", on: false },
+    { name: "搭建帐篷指南", on: false },
+    { name: "帐篷介绍", on: false },
+    { name: "露营活动策划书", on: false },
+    { name: "露营人员报名统计表", on: false },
   ],
 };
 

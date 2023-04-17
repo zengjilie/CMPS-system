@@ -6,23 +6,46 @@ import {
   dropdownHeader,
   removeDropdown,
   updateDropdown,
+  updateFinalDropdown,
 } from "../../redux/slices/dropdownSlice";
 import { useDispatch } from "react-redux";
+import { useRouter } from "next/router";
+import Star from "../Icon/Star";
 
 const rowHeaders: DropdownHeaderType = dropdownHeader;
 function DropdownCard({ dropdownId, allValues }: DropdownRowType) {
+  const router = useRouter();
   const dispatch = useDispatch();
+  const taskNum = router.pathname.split("/").at(-1);
+
   const handleChange = (e: any) => {
     const { value, name } = e.target;
     let data: any = { dropdownId };
     data[`${name}`] = value;
-
-    console.log(data);
-    dispatch(updateDropdown({ ...data }));
+    if (taskNum !== "6") {
+      dispatch(updateDropdown({ ...data }));
+    } else {
+      dispatch(updateFinalDropdown({ ...data }));
+    }
   };
 
   return (
     <div className={styles["dropdown-card"]}>
+      {taskNum === "5" && (
+        <div className={styles["select"]}>
+          <Star
+            width={20}
+            height={20}
+            stared={allValues.stared}
+            onClick={() => {
+              dispatch(
+                updateDropdown({ dropdownId, stared: allValues.stared })
+              );
+            }}
+          />
+        </div>
+      )}
+
       <select name="movie" onChange={(e: any) => handleChange(e)}>
         {rowHeaders.movies.map((movie, i) => (
           <option value={movie} key={`${dropdownId}-${i}`}>
@@ -102,13 +125,16 @@ function DropdownCard({ dropdownId, allValues }: DropdownRowType) {
         placeholder="输入总价..."
         onChange={(e: any) => handleChange(e)}
       />
-      <div className={styles["dropdown-card-delete"]}>
-        <Delete
-          width={20}
-          height={20}
-          onClick={() => dispatch(removeDropdown({ dropdownId }))}
-        />
-      </div>
+
+      {taskNum !== "6" && (
+        <div className={styles["dropdown-card-delete"]}>
+          <Delete
+            width={20}
+            height={20}
+            onClick={() => dispatch(removeDropdown({ dropdownId }))}
+          />
+        </div>
+      )}
     </div>
   );
 }

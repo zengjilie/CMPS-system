@@ -1,0 +1,43 @@
+@use "../../theme/global-styles/color" as *;
+
+.task-intro {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px 0;
+  position: relative;
+  top: 30vh;
+
+  h4 {
+    margin-bottom: 40px;
+  }
+
+  .task-intro-btn {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.task {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .task-answer {
+  }
+
+  .task-text {
+    display: flex;
+  }
+
+  .task-question {
+    h4 {
+      color: $primary-400;
+      margin-bottom: 10px;
+    }
+    p {
+      color: $primary-300;
+    }
+  }
+}

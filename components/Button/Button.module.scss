@@ -1,0 +1,31 @@
+@use "../../theme/global-styles/color" as *;
+
+.btn {
+  width: 100%;
+  padding: 14px;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.primary {
+  max-width: 200px;
+  color: white;
+  background: $accent-default;
+}
+
+.equa,
+.calc,
+.secondary {
+  color: $accent-default;
+  border: 1px solid $accent-default;
+  background: white;
+  cursor: pointer;
+  text-align: left;
+  max-width: 360px;
+
+  &:hover {
+    background: $accent-secondary;
+  }
+}

@@ -10,7 +10,7 @@ function Signup() {
   const [errors, setErrors] = useState<any>({});
   const router = useRouter();
 
-  //Check browser cookie
+  //Check browser  hiddecookie
   //If cookie exist, then auto signin
   //Get task state from database
   //Task the user the where he left
@@ -56,14 +56,14 @@ function Signup() {
       //Update task redux store
 
       //Direct the user to the next page
-      router.push("/consent");
+      router.push("/cses-survey");
     }
   };
 
   return (
     <>
       <Head>
-        <title>CMPS | Signup</title>
+        <title>CMPS | Create-self-efficacy-scale</title>
       </Head>
       <div className={styles.signup}>
         <h2 className={styles["signup-header"]}>创造力数学问题解决线上测试</h2>

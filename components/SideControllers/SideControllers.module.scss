@@ -3,12 +3,14 @@
 .side-controllers {
   display: flex;
   width: 800px;
-  height: 100%;
+  height: calc(100vh - 63px);
+  margin-left: auto;
 
   .dragme {
     cursor: col-resize;
     height: 100%;
     width: 5px;
+    min-width: 5px;
     background: $primary-60;
     border-left: 1px solid $primary-100;
   }

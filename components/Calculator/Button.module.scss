@@ -1,0 +1,74 @@
+@use "../../theme/global-styles/color" as *;
+
+.show-btn {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  background-color: white;
+  border-top: 1px solid $primary-100;
+}
+
+.equal {
+  // grid-column-start: 4;
+  // grid-column-end: 6;
+}
+
+.equal {
+  font-weight: medium;
+  width: 100%;
+  font-size: 40px;
+  color: $primary-50;
+  background: $primary-200;
+
+  &:hover {
+    color: white;
+    background: $primary-100;
+  }
+}
+
+.clr {
+  color: #d66d75;
+}
+
+.exp {
+  color: #06beb6;
+}
+
+.btn {
+  padding: 5px;
+  font-size: 24px;
+  font-weight: 500;
+  cursor: pointer;
+  background: none;
+  border: 0px;
+  user-select: none;
+  &:hover {
+    color: white;
+    background: $primary-100;
+  }
+}
+
+@media (min-width: 800px) {
+  .btn:hover {
+    transition: background-color 0.3s ease;
+  }
+
+  .btn:active,
+  .btn.touched {
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn:active {
+    transform: scale(0.9);
+  }
+
+  .btn.touched {
+    pointer-events: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .btn:active {
+    transform: scale(0.9);
+  }
+}

@@ -10,7 +10,9 @@ function SideProgressBar() {
   const router = useRouter();
   const tasks: TaskType[] = useSelector((state: any) => state.tasks.allTasks);
 
-  const path = router.asPath;
+  const taskSet = router.pathname.split("/")[1];
+  const taskNum = router.pathname.split("/").at(-1);
+  console.log(taskSet, taskNum);
   // when click submit, check if this task is already finished, if true it means you are modify your answer, modal pops up
 
   //check the progress of each task
@@ -58,11 +60,13 @@ function SideProgressBar() {
         <ul className={styles["sidenav-items"]}>
           {tasks.map((task, i) => (
             <li key={i}>
-              <Link href={`/task${i + 1}`}>
+              <Link href={`/${taskSet}/${i + 1}`}>
                 <h4
                   className={`${styles["sidenav-text"]} ${
                     styles[progressChecker(tasks[i])]
-                  }`}
+                  }
+                    ${Number(taskNum) === i + 1 && styles["current"]}
+                  `}
                 >
                   {task.taskname}
                 </h4>

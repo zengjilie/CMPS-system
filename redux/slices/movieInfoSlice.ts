@@ -9,6 +9,8 @@ const initialState: InfoState = {
     { name: "电影院观影注意事项", on: false },
     { name: "天悦电影院的场次安排表", on: false },
     { name: "五一劳动节期间上映影片简介", on: false },
+    { name: "天悦电影院电影票购买优惠说明", on: false },
+    { name: "最喜爱电影排名调查结果", on: false },
   ],
 };
 

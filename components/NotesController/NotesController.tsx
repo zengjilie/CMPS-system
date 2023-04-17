@@ -6,6 +6,7 @@ import Plus from "../Icon/Plus";
 import { addNote } from "../../redux/slices/noteSlice";
 import NoteCard from "../NoteCard/NoteCard";
 import { v4 as uuidv4 } from "uuid";
+import Info from "../Icon/Info";
 
 function NotesController() {
   const notes: NoteType[] = useSelector((state: any) => state.notes.allNotes);
@@ -15,6 +16,13 @@ function NotesController() {
     <div className={styles["notes-controller"]}>
       <div className={styles["notes-header"]}>
         <h4>笔记</h4>
+
+        <div className={styles["notes-detail-icon"]}>
+          <Info width={20} height={20} />
+          <small>
+            你可以点击“添加笔记” 或者删除笔记。你最多可以添加20个笔记。
+          </small>
+        </div>
       </div>
 
       <div className={styles["notes-body"]}>

@@ -1,0 +1,45 @@
+@use "../../theme/global-styles/color" as *;
+
+.equation {
+  position: absolute;
+  padding: 20px 0;
+  background-color: white;
+  cursor: move;
+  box-shadow: 8px 8px 19px -13px rgba(0, 0, 0, 0.25);
+
+  .equation-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 0 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid $primary-100;
+
+    .close-btn {
+      cursor: pointer;
+    }
+  }
+  .buttons {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: auto auto auto auto auto;
+    padding: 0 20px;
+
+    .sign {
+      margin: 6px auto;
+      font-size: 24px;
+      font-weight: 500;
+      color: $primary-300;
+      cursor: pointer;
+      border-radius: 50%;
+      background: none;
+      border: 0px;
+      user-select: none;
+
+      &:hover {
+        color: grey;
+        transition: background-color 0.3s ease;
+      }
+    }
+  }
+}

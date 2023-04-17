@@ -1,0 +1,15 @@
+@use "../../theme/global-styles/color" as *;
+
+.ms {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .selected {
+    border: 2px solid $accent-default;
+    background: $accent-secondary;
+  }
+
+  .not-selected {
+  }
+}

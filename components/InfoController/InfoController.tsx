@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import styles from "./InfoController.module.scss";
-import { InfoState } from "../../types";
-import { useDispatch, useSelector } from "react-redux";
-import { setCurrentMovieInfo } from "../../redux/slices/movieInfoSlice";
 import Chat from "../Chat/Chat";
 import Info from "../Info/Info";
+import { useRouter } from "next/router";
 
 function InfoController() {
   const [chatToggle, setChatToggle] = useState(true); // check whether the section is chat or info
-  const [chatType, setChatType] = useState(true); // check whether the chat content is movie:true or tent:false
-  const [infoType, setInfoType] = useState(true); // chekc whether the info is movie:true or tent:false
 
+  const router = useRouter();
+  const taskSet = router.pathname.split("/")[1];
   return (
     <div className={styles["info-controller"]}>
       <div className={styles["info-header"]}>
@@ -31,11 +29,11 @@ function InfoController() {
       <div className={styles["info-body"]}>
         {chatToggle ? (
           <div className={styles["chat-content"]}>
-            {chatType ? <Chat type="movie" /> : <Chat type="tent" />}
+            {taskSet === "task1" ? <Chat type="movie" /> : <Chat type="tent" />}
           </div>
         ) : (
           <div className={styles["info-content"]}>
-            {infoType ? <Info type="movie" /> : <Info type="tent" />}
+            {taskSet === "task1" ? <Info type="movie" /> : <Info type="tent" />}
           </div>
         )}
       </div>

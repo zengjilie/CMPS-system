@@ -1,5 +1,20 @@
 .container {
+  display: grid;
+  grid-template-columns: 130px auto auto;
+  height: calc(100vh - 63px);
+  width: 100%;
+  overflow: hidden;
+
+  main {
+    padding: 20px;
+    overflow: scroll;
+  }
+}
+
+.container2 {
   display: flex;
-  justify-content: space-between;
-  height: calc(100% - 63px);
+  justify-content: center;
+  height: calc(100vh - 63px);
+  overflow-y: scroll;
+  padding-bottom: 100px;
 }

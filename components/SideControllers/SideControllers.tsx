@@ -4,6 +4,7 @@ import InfoController from "../InfoController/InfoController";
 import NotesController from "../NotesController/NotesController";
 import ScrollMenuController from "../ScrollMenuController/ScrollMenuController";
 import DropdownMenuController from "../DropdownMenuController/DropdownMenuController";
+import { useRouter } from "next/router";
 
 function SideControllers() {
   const dragging = useRef<boolean>(false);
@@ -44,9 +45,9 @@ function SideControllers() {
       ></div>
       <div className={styles["side-controllers-items"]}>
         <InfoController />
-        {/* <NotesController /> */}
+        <NotesController />
         {/* <ScrollMenuController /> */}
-        <DropdownMenuController />
+        {/* <DropdownMenuController /> */}
       </div>
     </div>
   );

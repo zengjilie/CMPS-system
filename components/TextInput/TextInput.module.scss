@@ -1,0 +1,24 @@
+@use "../../theme/global-styles/color" as *;
+.text-input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .text-input-area {
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    border: 1px solid $primary-100;
+    width: 100%;
+    min-height: 300px;
+    padding: 16px;
+    font-weight: normal;
+    font-size: 1rem;
+    padding: 16px;
+    color: $primary-300;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

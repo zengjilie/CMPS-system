@@ -28,6 +28,11 @@ const initialState: TaskState = {
       finished: false,
       current: false,
     },
+    {
+      taskname: "问题六",
+      finished: false,
+      current: false,
+    },
   ],
 };
 

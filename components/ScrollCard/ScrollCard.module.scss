@@ -12,6 +12,14 @@
   &:hover input {
     background: $primary-60;
   }
+  &:hover .input {
+    background: $primary-60;
+  }
+  .input {
+    display: flex-start;
+    cursor: pointer;
+  }
+  .input,
   input {
     flex: 2;
     border: none;

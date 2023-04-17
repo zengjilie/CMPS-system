@@ -5,56 +5,93 @@ import { useDispatch } from "react-redux";
 import {
   removeScroll,
   scrollHeader,
+  updateFinalScroll,
   updateScroll,
 } from "../../redux/slices/scrollSlice";
 import Delete from "../Icon/Delete";
+import Star from "../Icon/Star";
+import { useRouter } from "next/router";
 
 const rowHeaders: ScrollHeaderType = scrollHeader;
 
 function ScrollCard({ scrollId, allValues }: ScrollRowType) {
   const dispatch = useDispatch();
 
-  const changeHandler = (e: any, i: 1 | 2 | 3 | 4) => {
-    //Update redux
-    dispatch(
-      updateScroll({ scrollId, typeIndex: i, value: Number(e.target.value) })
-    );
+  const router = useRouter();
+  const taskNum = router.pathname.split("/").at(-1);
+
+  const changeHandler = (e: any) => {
+    const { value, name } = e.target;
+    let data: any = { scrollId };
+    data[`${name}`] = value;
+
+    if (taskNum !== "6") {
+      dispatch(updateScroll({ ...data }));
+    } else {
+      dispatch(updateFinalScroll({ ...data }));
+    }
   };
 
   return (
     <div className={styles["scroll-card"]}>
+      {taskNum === "5" && (
+        <div className={styles["input"]}>
+          <Star
+            width={20}
+            height={20}
+            stared={allValues.stared}
+            onClick={() => {
+              dispatch(updateScroll({ scrollId, stared: allValues.stared }));
+            }}
+          />
+        </div>
+      )}
       <input
         type="number"
-        onChange={(e) => changeHandler(e, 1)}
+        name="type1"
+        onChange={(e) => changeHandler(e)}
         value={allValues.type1}
         min="0"
       />
       <input
         type="number"
-        onChange={(e) => changeHandler(e, 2)}
+        name="type2"
+        onChange={(e) => changeHandler(e)}
         value={allValues.type2}
         min="0"
       />
       <input
         type="number"
+        name="type3"
         onChange={(e) => changeHandler(e, 3)}
         value={allValues.type3}
         min="0"
       />
       <input
         type="number"
+        name="type4"
         onChange={(e) => changeHandler(e, 4)}
         value={allValues.type4}
         min="0"
       />
-      <input type="text" value={allValues.totalprice} readOnly={true} />
-      <div className={styles["scroll-card-delete"]}>
-        <Delete
-          width={20}
-          height={20}
-          onClick={() => dispatch(removeScroll({ scrollId }))}
-        />
-      </div>
+      {/* <input type="text" value={allValues.totalprice} readOnly={true} /> */}
+      <input
+        type="text"
+        name="totalprice"
+        value={allValues.totalprice}
+        placeholder="输入总价..."
+        onChange={(e: any) => changeHandler(e)}
+      />
+
+      {taskNum !== "6" && (
+        <div className={styles["scroll-card-delete"]}>
+          <Delete
+            width={20}
+            height={20}
+            onClick={() => dispatch(removeScroll({ scrollId }))}
+          />
+        </div>
+      )}
     </div>
   );
 }

@@ -5,11 +5,13 @@ function ChatCard({
   name,
   role,
   text,
+  textImage,
   image,
 }: {
   name: string;
   role: "me" | "notme";
   text: string;
+  textImage?: string;
   image: string;
 }) {
   if (role === "me") {
@@ -30,7 +32,11 @@ function ChatCard({
       >
         <div className={styles["chat-card-text"]}>
           <small style={{ marginRight: "auto" }}>{name}</small>
-          <p className={styles[role]}>{text}</p>
+          <p className={styles[role]}>
+            {text}
+            <br />
+            <img src={textImage} alt="" width="100%" height="auto" />
+          </p>
         </div>
         <img className={styles["chat-card-avatar"]} src={image} alt="" />
       </div>
