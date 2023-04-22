@@ -15,15 +15,14 @@ export default function Task26() {
   const dispatch = useDispatch();
   const equaRef = useRef<HTMLTextAreaElement>(null);
 
-  const textA: string = useSelector((state: any) => state.text["task_2_6_1_a"]);
-  const textB: string = useSelector((state: any) => state.text["task_2_6_1_b"]);
+  const textA: string = useSelector((state: any) => state.text["task_2_6_a"]);
+  const textB: string = useSelector((state: any) => state.text["task_2_6_b"]);
 
   return (
     <div className={styles["task"]}>
       <div className={styles["task-question"]}>
         <h4>问题六</h4>
         <p>
-          1.
           露营活动当天，老板更新了帐篷的实际库存，又购入了一种新型帐篷D（见信息中心）。
           请你设计一个租赁方案，并在下方方框内输入你的思路和计算过程，然后给出最佳方案。
         </p>
@@ -49,28 +48,28 @@ export default function Task26() {
         </div>
 
         <Calculator />
-        <Equation textId="task_2_6_1_b" addRef={equaRef} />
+        <Equation textId="task_2_6_b" addRef={equaRef} />
 
         <div className={styles["task-text"]}>
           <TextInput
-            textId="task_2_6_1_a"
+            textId="task_2_6_a"
             text={textA}
             placeholder="请在此处填写思路..."
-            wordLimit={150}
+            wordLimit={100}
           />
 
           <TextInput
-            textId="task_2_6_1_b"
+            textId="task_2_6_b"
             text={textB}
             equaRef={equaRef}
             placeholder="请在此处填写计算过程..."
-            wordLimit={150}
+            wordLimit={100}
           />
         </div>
       </div>
 
       <div className={styles["task-question"]}>
-        <p>2. 请填写最终答案。</p>
+        <p>请填写最终答案。</p>
       </div>
 
       <div className={styles["task-answer"]}>

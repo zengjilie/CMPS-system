@@ -42,6 +42,7 @@ export interface ScrollRowType {
     type2: string;
     type3: string;
     type4: string;
+    type5: string;
     totalprice: string;
   };
 }

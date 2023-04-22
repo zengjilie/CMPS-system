@@ -14,7 +14,7 @@ export default function Task23() {
     <div className={styles["task"]}>
       <div className={styles["task-question"]}>
         <h4>问题三</h4>
-        <p>1. 为了解决上述提出的问题，你认为需要考虑哪些条件（多选）？</p>
+        <p>为了解决上述提出的问题，你认为需要考虑哪些条件（多选）？</p>
       </div>
 
       <div className={styles["task-answer"]}>

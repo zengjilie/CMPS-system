@@ -14,7 +14,6 @@ export default function Task24() {
       <div className={styles["task-question"]}>
         <h4>问题四</h4>
         <p>
-          1.
           请你为他们想出尽可能多的租赁方案，在每个表格中选择租赁该类型帐篷的数量，并计算每个方案的价格。
         </p>
       </div>

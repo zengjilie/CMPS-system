@@ -7,6 +7,7 @@ export const scrollHeader: ScrollHeaderType = [
   { name: "A2" },
   { name: "B" },
   { name: "C" },
+  { name: "D" },
   { name: "总价" },
 ];
 
@@ -20,6 +21,7 @@ const initialState: ScrollState = {
       type2: "0",
       type3: "0",
       type4: "0",
+      type5: "0",
       totalprice: "",
     },
   },
@@ -102,6 +104,7 @@ const scrollSlice = createSlice({
         type2?: string;
         type3?: string;
         type4?: string;
+        type5?: string;
         totalprice?: string;
       }>
     ) => {
@@ -113,6 +116,8 @@ const scrollSlice = createSlice({
         state.finalScroll.allValues.type3 = payload.type3;
       } else if (Object.keys(payload).includes("type4") && payload.type4) {
         state.finalScroll.allValues.type4 = payload.type4;
+      } else if (Object.keys(payload).includes("type5") && payload.type5) {
+        state.finalScroll.allValues.type5 = payload.type5;
       } else if (Object.keys(payload).includes("totalprice")) {
         state.finalScroll.allValues.totalprice = payload.totalprice as string;
       }

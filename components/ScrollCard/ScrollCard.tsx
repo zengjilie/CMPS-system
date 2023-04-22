@@ -63,17 +63,26 @@ function ScrollCard({ scrollId, allValues }: ScrollRowType) {
       <input
         type="number"
         name="type3"
-        onChange={(e) => changeHandler(e, 3)}
+        onChange={(e) => changeHandler(e)}
         value={allValues.type3}
         min="0"
       />
       <input
         type="number"
         name="type4"
-        onChange={(e) => changeHandler(e, 4)}
+        onChange={(e) => changeHandler(e)}
         value={allValues.type4}
         min="0"
       />
+      {taskNum === "6" && (
+        <input
+          type="number"
+          name="type5"
+          onChange={(e) => changeHandler(e)}
+          value={allValues.type5}
+          min="0"
+        />
+      )}
       {/* <input type="text" value={allValues.totalprice} readOnly={true} /> */}
       <input
         type="text"

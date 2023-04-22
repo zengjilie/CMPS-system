@@ -15,7 +15,6 @@ export default function Task22() {
       <div className={styles["task-question"]}>
         <h4>问题二</h4>
         <p>
-          1.
           为了解决上述提出的问题，班长和其他同学搜集整理了相关信息，请你判断需要哪些信息呢（多选）？
         </p>
       </div>

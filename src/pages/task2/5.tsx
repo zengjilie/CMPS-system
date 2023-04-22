@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import Star from "../../../components/Icon/Star";
 
 export default function Task25() {
-  const [input, setInput] = useState("");
+  const text: string = useSelector((state: any) => state.text["task_2_5_b"]);
   const scrolls: ScrollRowType[] = useSelector(
     (state: any) => state.scrolls.allScrolls
   );
@@ -18,7 +18,7 @@ export default function Task25() {
       <div className={styles["task-question"]}>
         <h4>问题五</h4>
         <p>
-          1. 请你从上述方案中选出最适合小乐要求的方案，在该方案前点亮{" "}
+          请你从上述方案中选出最适合小乐要求的方案，在该方案前点亮{" "}
           <Star width={20} height={20} stared={false} />
           ，并解释理由。
           <br /> 注：可以选择多个方案为最佳方案
@@ -32,9 +32,8 @@ export default function Task25() {
 
       <div className={styles["task-answer"]}>
         <TextInput
-          name=""
-          text={input}
-          setText={setInput}
+          textId="task_2_5_b"
+          text={text}
           placeholder="
           选择最佳方案的理由
           (提示：最佳方案有什么优点和缺点)"

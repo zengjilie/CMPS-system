@@ -13,7 +13,7 @@ export default function Task14() {
     <div className={styles["task"]}>
       <div className={styles["task-question"]}>
         <h4>问题四</h4>
-        <p>1. 请你为小乐想出尽可能多的购票方案，并计算每个方案的价格。</p>
+        <p>请你为小乐想出尽可能多的购票方案，并计算每个方案的价格。</p>
       </div>
 
       <div className={styles["task-answer"]}>

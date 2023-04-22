@@ -33,8 +33,9 @@ function ScrollMenuController() {
         <div className={styles["scrolls-row-headers"]}>
           {rowHeaders.map((header, i) => {
             if (
-              (taskNum === "4" || taskNum === "6") &&
-              header.name === "红星"
+              ((taskNum === "4" || taskNum === "6") &&
+                header.name === "红星") ||
+              (taskNum !== "6" && header.name === "D")
             ) {
               return <></>;
             } else if (taskNum === "5" && header.name === "红星") {

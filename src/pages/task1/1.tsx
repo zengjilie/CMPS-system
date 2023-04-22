@@ -6,18 +6,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateText } from "../../../redux/slices/textSlice";
 
 export default function Task11() {
-  const text: string = useSelector((state: any) => state.text["task_1_1_1"]);
+  const text: string = useSelector((state: any) => state.text["task_1_1_a"]);
 
   return (
     <div className={styles["task"]}>
       <div className={styles["task-question"]}>
         <h4>问题一</h4>
-        <p>1. 根据右侧对话，请写出小乐要解决什么问题？</p>
+        <p>根据右侧对话，请写出小乐要解决什么问题？</p>
       </div>
 
       <div className={styles["task-answer"]}>
         <TextInput
-          textId="task_1_1_1"
+          textId="task_1_1_a"
           text={text}
           placeholder="请在此处填写答案..."
           wordLimit={20}
