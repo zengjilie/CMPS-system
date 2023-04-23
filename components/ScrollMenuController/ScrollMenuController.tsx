@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./ScrollmenuController.module.scss";
+import styles from "./ScrollMenuController.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import ScrollCard from "../ScrollCard/ScrollCard";
 import { ScrollHeaderType, ScrollRowType } from "../../types";
