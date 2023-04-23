@@ -34,8 +34,9 @@ export default function CSESsurvey() {
   };
 
   return (
-    <div className={styles["cses"]}>
+    <div className={styles["task-survey"]}>
       <h3>请完成以下量表</h3>
+      <br />
       <p>
         同学，你好！此问卷调查的是你在解决问题方面的实际情况。请你认真阅读每个句子，然后选择最符合你真实情况的词语，你的答案没有对错之分。
       </p>

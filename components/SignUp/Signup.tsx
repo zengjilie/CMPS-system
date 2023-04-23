@@ -16,8 +16,8 @@ function Signup() {
   //Task the user the where he left
 
   // Limited Options the user can select
-  const schools = ["A小学", "B小学"];
-  const grades = ["一年级", "二年级", "三年级", "四年级", "五年级", "六年级"];
+  const schools = ["A初中", "B初中"];
+  const grades = ["七年级", "八年级", "九年级"];
   const classes = ["1班", "2班"];
   const sexes = ["男", "女"];
 
@@ -56,7 +56,7 @@ function Signup() {
       //Update task redux store
 
       //Direct the user to the next page
-      router.push("/cses-survey");
+      router.push("/intro");
     }
   };
 

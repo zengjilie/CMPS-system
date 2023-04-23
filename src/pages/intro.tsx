@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 export default function Consent({ token }: any) {
   const router = useRouter();
   const handleClick = () => {
-    router.push("/task1");
+    router.push("/warmup");
   };
   return (
     <>

@@ -74,8 +74,10 @@
 }
 
 .unfinished {
-  cursor: not-allowed;
   color: $primary-100;
+  cursor: not-allowed;
+  &:hover {
+  }
 }
 
 .current {
