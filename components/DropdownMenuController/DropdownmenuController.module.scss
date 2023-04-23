@@ -9,16 +9,6 @@
   height: 30%;
   width: 100%;
 
-  .dropdowns-header {
-    padding: 10px;
-    border-bottom: 1px solid $primary-100;
-
-    h4 {
-      color: $primary-300;
-      font-weight: bold;
-    }
-  }
-
   .dropdowns-body {
     display: flex;
     flex-direction: column;

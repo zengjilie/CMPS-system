@@ -25,10 +25,6 @@ function ScrollMenuController() {
 
   return (
     <div className={styles["scrolls-controller"]}>
-      {/* <div className={styles["scrolls-header"]}>
-        <h4>滚动菜单</h4>
-      </div> */}
-
       <div className={styles["scrolls-body"]}>
         <div className={styles["scrolls-row-headers"]}>
           {rowHeaders.map((header, i) => {
