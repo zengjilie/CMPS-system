@@ -70,7 +70,7 @@ const csesSlice = createSlice({
   name: "cses",
   initialState,
   reducers: {
-    updateScore: (
+    updateCSESScore: (
       state: csesState,
       { payload }: PayloadAction<{ taskId: string; score: number }>
     ) => {
@@ -86,5 +86,5 @@ const csesSlice = createSlice({
   },
 });
 
-export const { updateScore } = csesSlice.actions;
+export const { updateCSESScore } = csesSlice.actions;
 export default csesSlice.reducer;

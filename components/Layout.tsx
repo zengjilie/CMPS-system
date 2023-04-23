@@ -8,7 +8,6 @@ import { useRouter } from "next/router";
 function Layout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const path = router.pathname.split("/").at(-1);
-  // console.log(path);
 
   if (path && parseInt(path)) {
     return (

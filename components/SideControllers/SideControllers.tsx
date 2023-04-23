@@ -2,9 +2,6 @@ import React, { createRef, useEffect, useRef, useState } from "react";
 import styles from "./SideControllers.module.scss";
 import InfoController from "../InfoController/InfoController";
 import NotesController from "../NotesController/NotesController";
-import ScrollMenuController from "../ScrollMenuController/ScrollMenuController";
-import DropdownMenuController from "../DropdownMenuController/DropdownMenuController";
-import { useRouter } from "next/router";
 
 function SideControllers() {
   const dragging = useRef<boolean>(false);
@@ -46,8 +43,6 @@ function SideControllers() {
       <div className={styles["side-controllers-items"]}>
         <InfoController />
         <NotesController />
-        {/* <ScrollMenuController /> */}
-        {/* <DropdownMenuController /> */}
       </div>
     </div>
   );

@@ -1,11 +1,19 @@
 //Task Type
-export interface TaskType {
-  taskname: string;
+export interface TaskProgressType {
+  id: stirng;
+  name: string;
   finished: boolean;
   current: boolean;
 }
-export interface TaskState {
-  allTasks: TaskType[];
+
+export interface TaskProgressOptionType {
+  taskName: string;
+  taskOptions: TaskProgressType[];
+}
+
+export interface TaskProgressState {
+  task_1: TaskProgressOptionType;
+  task_2: TaskProgressOptionType;
 }
 
 export interface UserState {
@@ -42,7 +50,7 @@ export interface ScrollRowType {
     type2: string;
     type3: string;
     type4: string;
-    type5: string;
+    type5?: string;
     totalprice: string;
   };
 }
@@ -99,4 +107,30 @@ export interface MSState {
     ms1Task2: msTaskType[];
     ms2Task2: msTaskType[];
   };
+}
+
+//Task Experience Type
+export interface TaskOptionType {
+  name: string;
+  score: number;
+}
+export interface TaskExpType {
+  taskName: string;
+  taskOptions: TaskOptionType[];
+}
+
+export interface TaskExpState {
+  task_1: TaskExpType;
+  task_2: TaskExpType;
+  task_all: TaskExpType;
+}
+
+//mpsas survey type
+export interface mpsasTaskType {
+  taskId: string;
+  name: string;
+  score: number;
+}
+export interface mpsasState {
+  allTasks: mpsasTaskType[];
 }

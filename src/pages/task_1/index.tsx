@@ -8,7 +8,7 @@ import Layout from "../../../components/Layout";
 export default function Task1Intro() {
   const router = useRouter();
   const handleClick = () => {
-    router.push("/task1/1");
+    router.push("/task_1/1");
   };
   return (
     <>

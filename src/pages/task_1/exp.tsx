@@ -1,45 +1,58 @@
-import React, { useState } from "react";
-import styles from "../../theme/page-styles/task.module.scss";
+import React, { Fragment, useState } from "react";
+import styles from "../../../theme/page-styles/task.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import Layout from "../../components/Layout";
 import { useRouter } from "next/router";
-import { csesTaskType } from "../../types";
-import Button from "../../components/Button/Button";
-import { updateCSESScore } from "../../redux/slices/csesSlice";
+import { TaskExpState, TaskExpType, TaskOptionType } from "../../../types";
+import Layout from "../../../components/Layout";
+import Button from "../../../components/Button/Button";
+import { updateTaskExpScore } from "../../../redux/slices/taskExpSlice";
 
-export default function CSESsurvey() {
+export default function TaskExp() {
   const [error, setError] = useState<boolean>(false);
-  const allTasks = useSelector((state: any) => state.cses.allTasks);
-  const dispatch = useDispatch();
   const router = useRouter();
+  const path: string = router.asPath;
+  const taskId: keyof TaskExpState = path.split("/")[1] as keyof TaskExpState;
+  const dispatch = useDispatch();
+
+  const { taskName, taskOptions }: TaskExpType = useSelector(
+    (state: any) => state.taskExp[taskId] || {}
+  );
+
+  const getNextTaskUrl = (): string => {
+    if (taskId === "task_1") {
+      return "/task_2";
+    } else if (taskId === "task_2") {
+      return "task_all";
+    }
+    return "";
+  };
 
   const handleClick = () => {
-    //check if user answered all questions
-    const unfinishedTask = allTasks.filter(
-      (task: csesTaskType) => task.score === 0
+    // check if user answered all questions
+    const unfinishedTask = taskOptions.filter(
+      (task: TaskOptionType) => task.score === 0
     );
-
     if (unfinishedTask.length > 0) {
       setError(true);
     } else {
-      router.push("/task1");
+      router.push(getNextTaskUrl());
     }
   };
 
   const onChangeValue = (e: any) => {
     const value = Number(e.target.value);
-    const id = Number(e.target.id.split("-")[2]) + 1;
+    const taskNum = Number(e.target.id.split("-")[2]);
 
-    dispatch(updateCSESScore({ taskId: id.toString(), score: value }));
+    dispatch(updateTaskExpScore({ taskId, taskNum, score: value }));
   };
 
   return (
-    <div className={styles["cses"]}>
-      <h3>请完成以下量表</h3>
+    <div className={styles["task-survey"]}>
+      <h3>{taskName}</h3>
+      <br />
       <p>
         同学，你好！此问卷调查的是你在解决问题方面的实际情况。请你认真阅读每个句子，然后选择最符合你真实情况的词语，你的答案没有对错之分。
       </p>
-
       <div className={styles["survey"]}>
         <p></p>
         <div className={styles["survey-scale"]}>
@@ -50,14 +63,14 @@ export default function CSESsurvey() {
           <p>完全同意</p>
         </div>
 
-        {allTasks.map((task: csesTaskType, i: number) => (
-          <>
+        {taskOptions?.map((task: TaskOptionType, i: number) => (
+          <Fragment key={`taskExp-${taskId}-${i + 1}`}>
             <p className={styles["survey-task-name"]}>{`${i + 1}.${
               task.name
             }`}</p>
             <form
               className={styles["survey-options"]}
-              id={`survey-task-${i + 1}`}
+              id={`survey-task-${i}`}
               onChange={(e: any) => onChangeValue(e)}
             >
               <div className={styles["survey-option"]}>
@@ -105,7 +118,7 @@ export default function CSESsurvey() {
                 />
               </div>
             </form>
-          </>
+          </Fragment>
         ))}
       </div>
       <Button
@@ -120,6 +133,6 @@ export default function CSESsurvey() {
   );
 }
 
-CSESsurvey.getLayout = function getLayout(page: React.ReactNode) {
+TaskExp.getLayout = function getLayout(page: React.ReactNode) {
   return <Layout>{page}</Layout>;
 };

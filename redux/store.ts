@@ -1,6 +1,6 @@
 import { Store, combineReducers, configureStore } from "@reduxjs/toolkit";
 import { MakeStore, createWrapper, Context, HYDRATE } from "next-redux-wrapper";
-import tasks from "./slices/taskSlice";
+import taskProgress from "./slices/taskProgressSlice";
 import user from "./slices/userSlice";
 import movieInfo from "./slices/movieInfoSlice";
 import tentInfo from "./slices/tentInfoSlice";
@@ -12,9 +12,11 @@ import equation from "./slices/equationSlice";
 import cses from "./slices/csesSlice";
 import ms from "./slices/multiSelectSlice";
 import text from "./slices/textSlice";
+import taskExp from "./slices/taskExpSlice";
+import mpsas from "./slices/mpsasSlice";
 
 const allReducers = combineReducers({
-  tasks,
+  taskProgress,
   user,
   movieInfo,
   tentInfo,
@@ -26,6 +28,8 @@ const allReducers = combineReducers({
   cses,
   ms,
   text,
+  taskExp,
+  mpsas,
 });
 
 const masterReducer = (state: any, action: any) => {

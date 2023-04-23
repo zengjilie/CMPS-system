@@ -3,21 +3,24 @@ import styles from "./SideProgressBar.module.scss";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
-import { TaskType } from "../../types";
+import { TaskProgressOptionType, TaskProgressType } from "../../types";
 
 function SideProgressBar() {
   const [submit, setSubmit] = useState(false);
   const router = useRouter();
-  const tasks: TaskType[] = useSelector((state: any) => state.tasks.allTasks);
-
   const taskSet = router.pathname.split("/")[1];
-  const taskNum = router.pathname.split("/").at(-1);
-  console.log(taskSet, taskNum);
+  const taskId = router.pathname.split("/").at(-1);
+
+  const { taskName, taskOptions }: TaskProgressOptionType = useSelector(
+    (state: any) => state.taskProgress[taskSet]
+  );
+
+  console.log(taskSet, taskId);
   // when click submit, check if this task is already finished, if true it means you are modify your answer, modal pops up
 
   //check the progress of each task
   const progressChecker = (task: any) => {
-    if (task.current === true) {
+    if (task.id === taskId) {
       return "current";
     }
 
@@ -45,7 +48,8 @@ function SideProgressBar() {
     //update database
   };
 
-  const nextHandler = () => {
+  const getNextUrl = () => {};
+  const nextUrlHandler = () => {
     //redux set task state
     //current false
     //jump to next task
@@ -58,17 +62,15 @@ function SideProgressBar() {
 
       <div className={styles["sidenav-controller"]}>
         <ul className={styles["sidenav-items"]}>
-          {tasks.map((task, i) => (
+          {taskOptions.map((task, i) => (
             <li key={i}>
-              <Link href={`/${taskSet}/${i + 1}`}>
+              <Link href={`/${taskSet}/${task.id}`}>
                 <h4
                   className={`${styles["sidenav-text"]} ${
-                    styles[progressChecker(tasks[i])]
-                  }
-                    ${Number(taskNum) === i + 1 && styles["current"]}
-                  `}
+                    styles[progressChecker(task)]
+                  }`}
                 >
-                  {task.taskname}
+                  {task.name}
                 </h4>
               </Link>
             </li>
@@ -84,7 +86,7 @@ function SideProgressBar() {
           </button>
           <button
             className={`${styles["sidenav-btn"]} ${styles["inactive"]}`}
-            onClick={nextHandler}
+            onClick={nextUrlHandler}
           >
             下一题
           </button>

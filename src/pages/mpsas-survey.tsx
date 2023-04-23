@@ -1,28 +1,30 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import styles from "../../theme/page-styles/task.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import Layout from "../../components/Layout";
+import { mpsasTaskType } from "../../types";
 import { useRouter } from "next/router";
-import { csesTaskType } from "../../types";
+import { updateMPSASScore } from "../../redux/slices/mpsasSlice";
+import Layout from "../../components/Layout";
 import Button from "../../components/Button/Button";
-import { updateCSESScore } from "../../redux/slices/csesSlice";
 
-export default function CSESsurvey() {
+export default function MPSASSurvey() {
   const [error, setError] = useState<boolean>(false);
-  const allTasks = useSelector((state: any) => state.cses.allTasks);
+  const allTasks: mpsasTaskType[] = useSelector(
+    (state: any) => state.mpsas?.allTasks
+  );
   const dispatch = useDispatch();
   const router = useRouter();
 
   const handleClick = () => {
     //check if user answered all questions
     const unfinishedTask = allTasks.filter(
-      (task: csesTaskType) => task.score === 0
+      (task: mpsasTaskType) => task.score === 0
     );
 
     if (unfinishedTask.length > 0) {
       setError(true);
     } else {
-      router.push("/task1");
+      router.push("/thankyou");
     }
   };
 
@@ -30,34 +32,34 @@ export default function CSESsurvey() {
     const value = Number(e.target.value);
     const id = Number(e.target.id.split("-")[2]) + 1;
 
-    dispatch(updateCSESScore({ taskId: id.toString(), score: value }));
+    dispatch(updateMPSASScore({ taskId: id.toString(), score: value }));
   };
 
   return (
-    <div className={styles["cses"]}>
-      <h3>请完成以下量表</h3>
+    <div className={styles["task-survey"]}>
+      <h3>创造性数学问题解决属性量表</h3>
+      <br />
       <p>
         同学，你好！此问卷调查的是你在解决问题方面的实际情况。请你认真阅读每个句子，然后选择最符合你真实情况的词语，你的答案没有对错之分。
       </p>
-
       <div className={styles["survey"]}>
         <p></p>
         <div className={styles["survey-scale"]}>
-          <p>完全不同意</p>
-          <p>有点不同意</p>
-          <p>不确定</p>
-          <p>有点同意</p>
-          <p>完全同意</p>
+          <p>几乎不</p>
+          <p>很少</p>
+          <p>有时</p>
+          <p>经常</p>
+          <p>常常</p>
         </div>
 
-        {allTasks.map((task: csesTaskType, i: number) => (
-          <>
+        {allTasks?.map((task: mpsasTaskType, i: number) => (
+          <Fragment key={`taskExp-taskall-${i + 1}`}>
             <p className={styles["survey-task-name"]}>{`${i + 1}.${
               task.name
             }`}</p>
             <form
               className={styles["survey-options"]}
-              id={`survey-task-${i + 1}`}
+              id={`survey-task-${i}`}
               onChange={(e: any) => onChangeValue(e)}
             >
               <div className={styles["survey-option"]}>
@@ -105,7 +107,7 @@ export default function CSESsurvey() {
                 />
               </div>
             </form>
-          </>
+          </Fragment>
         ))}
       </div>
       <Button
@@ -120,6 +122,6 @@ export default function CSESsurvey() {
   );
 }
 
-CSESsurvey.getLayout = function getLayout(page: React.ReactNode) {
+MPSASSurvey.getLayout = function getLayout(page: React.ReactNode) {
   return <Layout>{page}</Layout>;
 };

@@ -1,12 +1,14 @@
 .container {
   display: grid;
-  grid-template-columns: 130px auto auto;
+  grid-template-columns: 130px auto min-content;
+  column-gap: 0;
   height: calc(100vh - 63px);
   width: 100%;
   overflow: hidden;
 
   main {
     padding: 20px;
+    width: 100%;
     overflow: scroll;
   }
 }
