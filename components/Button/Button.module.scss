@@ -13,6 +13,10 @@
   color: white;
   background: $accent-default;
   cursor: pointer;
+
+  &:hover {
+    background: $accent-hover;
+  }
 }
 
 .equa,

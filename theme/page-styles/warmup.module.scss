@@ -1,2 +1,22 @@
 .warmup {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 60px 0;
+  position: relative;
+  gap: 20px;
+
+  .warmup-header {
+  }
+  .warmup-text {
+  }
+  .warmup-image {
+    width: 400px;
+    height: auto;
+  }
+  .warmup-buttons {
+    display: flex;
+    gap: 20px;
+  }
 }
