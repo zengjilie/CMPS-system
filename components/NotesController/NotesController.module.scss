@@ -19,60 +19,6 @@
       font-weight: bold;
       white-space: nowrap;
     }
-
-    .notes-detail-icon {
-      color: $primary-300;
-      padding: 0 10px;
-      cursor: pointer;
-      position: relative;
-      display: flex;
-      justify-content: center;
-
-      svg {
-        fill: $primary-300;
-        cursor: pointer;
-      }
-      &:hover svg {
-        fill: $primary-400;
-      }
-      &:hover small {
-        display: block;
-      }
-    }
-
-    small {
-      display: none;
-      white-space: nowrap;
-      position: absolute;
-      top: 30px;
-      padding: 10px;
-      background: white;
-      border: 1px solid $primary-100;
-      box-shadow: 8px 8px 19px rgba(0, 0, 0, 0.25);
-      &::after,
-      &::before {
-        bottom: 100%;
-        left: 50%;
-        border: solid transparent;
-        content: "";
-        height: 0;
-        width: 0;
-        position: absolute;
-        pointer-events: none;
-      }
-      &::after {
-        border-color: rgba(0, 0, 0, 0);
-        border-bottom-color: white;
-        border-width: 10px;
-        margin-left: -10px;
-      }
-      &::before {
-        border-color: rgba(255, 255, 255, 0);
-        border-bottom-color: $primary-100;
-        border-width: 11px;
-        margin-left: -11px;
-      }
-    }
   }
 
   .notes-body {

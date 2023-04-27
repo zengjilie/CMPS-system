@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 
 interface AppProps {
   className?: any;
-  type: "primary" | "secondary" | "calc" | "equa";
+  type: "primary" | "secondary" | "calc" | "equa" | "inactive";
   click?: any;
   text: string;
 }

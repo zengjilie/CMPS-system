@@ -34,8 +34,13 @@ export interface NoteType {
   noteId: string;
   text: string;
 }
-export interface noteState {
-  allNotes: NoteType[];
+export interface NoteState {
+  task_1: {
+    allNotes: NoteType[];
+  };
+  task_2: {
+    allNotes: NoteType[];
+  };
 }
 
 //Scroll Type
@@ -134,3 +139,18 @@ export interface mpsasTaskType {
 export interface mpsasState {
   allTasks: mpsasTaskType[];
 }
+
+//Current page Data type
+export interface CurrentDataType {
+  text?: string;
+  ms?: msTaskType[];
+  dropdowns?: DropdownRowType[];
+  textA?: string;
+  textB?: string;
+  finalDropdown?: DropdownRowType;
+  scrolls?: ScrollRowType[];
+  finalScroll?: ScrollRowType;
+}
+
+export type TaskSetType = "task_1" | "task_2";
+export type TaskIdType = "1" | "2" | "3" | "4" | "5" | "6" | "exp";

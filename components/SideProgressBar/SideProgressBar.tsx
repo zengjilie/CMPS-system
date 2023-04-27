@@ -2,40 +2,32 @@ import React, { useState } from "react";
 import styles from "./SideProgressBar.module.scss";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
-  DropdownRowType,
-  ScrollRowType,
+  CurrentDataType,
+  TaskIdType,
   TaskProgressOptionType,
-  TaskProgressType,
-  msTaskType,
+  TaskProgressState,
+  TaskSetType,
 } from "../../types";
+import Button from "../Button/Button";
+import { isCurrentDataEmpty } from "./emptyChecker";
+import { finishTask } from "../../redux/slices/taskProgressSlice";
 
 function SideProgressBar() {
-  const [submit, setSubmit] = useState(false);
   const router = useRouter();
-  const taskSet: string = router.pathname.split("/")[1];
-  const taskId = router.pathname.split("/").at(-1);
-
+  const taskSet: TaskSetType = router.pathname.split("/")[1] as TaskSetType;
+  const taskId: TaskIdType = router.pathname.split("/").at(-1) as TaskIdType;
   const { taskOptions }: TaskProgressOptionType = useSelector(
     (state: any) => state.taskProgress[taskSet]
   );
-
-  const textData: string = useSelector((state: any) => state.text);
+  const currentTask = taskOptions[Number(taskId) - 1];
+  const dispatch = useDispatch();
 
   //get current data, it could be text(string), array(), or combined
   //because we need to conditionally render the submit button
   const currentData = useSelector((state: any) => {
-    let data: {
-      text?: string;
-      ms?: msTaskType[];
-      dropdowns?: DropdownRowType[];
-      textA?: string;
-      textB?: string;
-      finalDropdown?: DropdownRowType;
-      scrolls?: ScrollRowType[];
-      finalScroll?: ScrollRowType;
-    } = {};
+    let data: CurrentDataType = {};
     if (taskSet === "task_1") {
       switch (taskId) {
         case "1":
@@ -62,36 +54,39 @@ function SideProgressBar() {
         default:
           break;
       }
-    } else {
+    } else if (taskSet === "task_2") {
       switch (taskId) {
         case "1":
           data.text = state.text["task_2_1_a"];
+          break;
         case "2":
           data.ms = state.ms.allMSs["ms1Task2"];
+          break;
         case "3":
           data.ms = state.ms.allMSs["ms2Task2"];
+          break;
         case "4":
           data.scrolls = state.scrolls.allScrolls;
+          break;
         case "5":
-          data.scrolls = state.scrolls.allSCrolls;
+          data.scrolls = state.scrolls.allScrolls;
           data.text = state.text["task_2_5_b"];
+          break;
         case "6":
           data.textA = state.text["task_2_6_a"];
           data.textB = state.text["task_2_6_b"];
           data.finalScroll = state.scrolls.finalScroll;
+          break;
+        default:
+          break;
       }
     }
     console.log("data", data);
     return data;
   });
-  console.log(currentData);
-  //check the data in current task, whether it's empty
-  //if empty, submit button will not be activated
-  const isCurrentDataEmpty = (): boolean => {
-    //check
-    return true;
-  };
+  console.log("currentData", currentData);
 
+  console.log("isEmpty", isCurrentDataEmpty(taskId, currentData));
   console.log(taskSet, taskId);
   // when click submit, check if this task is already finished, if true it means you are modify your answer, modal pops up
 
@@ -108,28 +103,19 @@ function SideProgressBar() {
     }
   };
 
-  // read from redux
-  // check if user has finished task 1,2,3...
-
-  // check which task the user is currently working on
-
-  // check which tasks the user haven't done
-
-  // check if user make a selection or have input
-
-  // check if submited is set to true
-
   const submitHandler = () => {
     //redux set task state
-    //fnished true
-    //update database
+    dispatch(finishTask({ taskSet, taskId }));
   };
 
-  const getNextUrl = () => {};
   const nextUrlHandler = () => {
-    //redux set task state
-    //current false
-    //jump to next task
+    let nextUrl: string = "";
+    if (taskId === "6") {
+      nextUrl = `/${taskSet}/exp`;
+    } else {
+      nextUrl = `/${taskSet}/${Number(taskId) + 1}`;
+    }
+    router.push(nextUrl);
   };
   return (
     <div className={styles["sidenav-bar"]}>
@@ -158,18 +144,18 @@ function SideProgressBar() {
         </ul>
 
         <div className={styles["sidenav-btns"]}>
-          <button
-            className={`${styles["sidenav-btn"]} ${styles["inactive"]}`}
-            onClick={submitHandler}
-          >
-            提交
-          </button>
-          <button
-            className={`${styles["sidenav-btn"]} ${styles["inactive"]}`}
-            onClick={nextUrlHandler}
-          >
-            下一题
-          </button>
+          <Button
+            click={submitHandler}
+            text="提交"
+            type={
+              isCurrentDataEmpty(taskId, currentData) ? "inactive" : "primary"
+            }
+          />
+          <Button
+            click={nextUrlHandler}
+            text={taskId === "6" ? "结束作答" : "下一题"}
+            type={currentTask.finished ? "primary" : "inactive"}
+          />
         </div>
       </div>
     </div>

@@ -34,8 +34,12 @@
   }
 
   .task-question {
-    h4 {
-      color: $primary-400;
+    .task-question-header {
+      display: flex;
+      align-items: center;
+      h4 {
+        color: $primary-400;
+      }
       margin-bottom: 10px;
     }
     p {

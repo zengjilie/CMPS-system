@@ -21,16 +21,16 @@ function DropdownMenuController() {
     (state: any) => state.dropdowns.finalDropdown
   );
 
-  const taskNum = router.pathname.split("/").at(-1);
+  const taskId = router.pathname.split("/").at(-1);
 
   return (
     <div className={styles["dropdowns-controller"]}>
       <div className={styles["dropdowns-body"]}>
         <div className={styles["dropdowns-row-headers"]}>
           {rowHeaders.names.map((name, i) => {
-            if ((taskNum === "4" || taskNum === "6") && name === "红星") {
+            if ((taskId === "4" || taskId === "6") && name === "红星") {
               return <></>;
-            } else if (taskNum === "5" && name === "红星") {
+            } else if (taskId === "5" && name === "红星") {
               return (
                 <div
                   className={styles["dropdowns-row-header"]}
@@ -50,11 +50,11 @@ function DropdownMenuController() {
               );
             }
           })}
-          {taskNum !== "6" && (
+          {taskId !== "6" && (
             <div className={styles["dropdowns-row-padding"]}></div>
           )}
         </div>
-        {taskNum !== "6" ? (
+        {taskId !== "6" ? (
           <>
             {dropdowns.map((dropdown, i) => (
               <DropdownCard
@@ -71,7 +71,7 @@ function DropdownMenuController() {
           />
         )}
 
-        {taskNum !== "6" && (
+        {taskId !== "6" && (
           <div
             className={styles["add-dropdown-btn"]}
             onClick={() => dispatch(addDropdown({ dropdownId: uuidv4() }))}

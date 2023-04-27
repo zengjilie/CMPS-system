@@ -3,7 +3,8 @@ import Delete from "../Icon/Delete";
 import styles from "./NoteCard.module.scss";
 import { useDispatch } from "react-redux";
 import { removeNote, updateNote } from "../../redux/slices/noteSlice";
-import { useRefresh } from "../../lib/hooks/useRefresh";
+import { useRouter } from "next/router";
+import { TaskSetType } from "../../types";
 
 type AppProps = {
   noteId: string;
@@ -12,9 +13,11 @@ type AppProps = {
 
 function NoteCard({ noteId, text }: AppProps) {
   const dispatch = useDispatch();
+  const router = useRouter();
+  const taskSet: TaskSetType = router.pathname.split("/")[1] as TaskSetType;
 
   const inputHander = (e: any) => {
-    dispatch(updateNote({ noteId, text: e.target.value }));
+    dispatch(updateNote({ taskSet, noteId, text: e.target.value }));
   };
 
   return (
@@ -28,7 +31,7 @@ function NoteCard({ noteId, text }: AppProps) {
       <Delete
         width={20}
         height={20}
-        onClick={() => dispatch(removeNote({ noteId }))}
+        onClick={() => dispatch(removeNote({ taskSet, noteId }))}
       />
     </div>
   );

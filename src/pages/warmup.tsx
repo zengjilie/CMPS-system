@@ -1,5 +1,5 @@
 import React from "react";
-import WarmupModal from "../../components/WarmupModal/WarmupModal";
+import WarmupModal from "../../components/Modals/WarmupModal/WarmupModal";
 import styles from "../../theme/page-styles/warmup.module.scss";
 import Layout from "../../components/Layout";
 

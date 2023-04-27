@@ -1,8 +1,13 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { noteState, NoteType } from "../../types";
+import { NoteState, NoteType, TaskSetType } from "../../types";
 
-const initialState: noteState = {
-  allNotes: [],
+const initialState: NoteState = {
+  task_1: {
+    allNotes: [],
+  },
+  task_2: {
+    allNotes: [],
+  },
 };
 
 const noteSlice = createSlice({
@@ -10,26 +15,35 @@ const noteSlice = createSlice({
   initialState,
   reducers: {
     addNote: (
-      state: noteState,
-      { payload }: PayloadAction<{ noteId: string }>
+      state: NoteState,
+      { payload }: PayloadAction<{ taskSet: TaskSetType; noteId: string }>
     ) => {
-      state.allNotes.push({ noteId: payload.noteId, text: "" });
+      state[payload.taskSet].allNotes.push({
+        noteId: payload.noteId,
+        text: "",
+      });
     },
 
     removeNote: (
-      state: noteState,
-      { payload }: PayloadAction<{ noteId: string }>
+      state: NoteState,
+      { payload }: PayloadAction<{ taskSet: TaskSetType; noteId: string }>
     ) => {
-      state.allNotes = state.allNotes.filter(
+      state[payload.taskSet].allNotes = state[payload.taskSet].allNotes.filter(
         (note) => note.noteId !== payload.noteId
       );
     },
 
     updateNote: (
-      state: noteState,
-      { payload }: PayloadAction<{ noteId: string; text: string }>
+      state: NoteState,
+      {
+        payload,
+      }: PayloadAction<{
+        taskSet: TaskSetType;
+        noteId: string;
+        text: string;
+      }>
     ) => {
-      state.allNotes.map((note) => {
+      state[payload.taskSet].allNotes.map((note) => {
         if (note.noteId === payload.noteId) {
           note.text = payload.text;
           return note;

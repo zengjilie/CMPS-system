@@ -58,15 +58,11 @@
   }
 }
 
-.activate {
+.active {
   background: $accent-default;
   &:hover {
     background: $accent-hover;
   }
-}
-
-.inactive {
-  background: $primary-100;
 }
 
 .finished {

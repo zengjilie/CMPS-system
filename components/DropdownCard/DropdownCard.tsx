@@ -16,13 +16,13 @@ const rowHeaders: DropdownHeaderType = dropdownHeader;
 function DropdownCard({ dropdownId, allValues }: DropdownRowType) {
   const router = useRouter();
   const dispatch = useDispatch();
-  const taskNum = router.pathname.split("/").at(-1);
+  const taskId = router.pathname.split("/").at(-1);
 
   const handleChange = (e: any) => {
     const { value, name } = e.target;
     let data: any = { dropdownId };
     data[`${name}`] = value;
-    if (taskNum !== "6") {
+    if (taskId !== "6") {
       dispatch(updateDropdown({ ...data }));
     } else {
       dispatch(updateFinalDropdown({ ...data }));
@@ -31,7 +31,7 @@ function DropdownCard({ dropdownId, allValues }: DropdownRowType) {
 
   return (
     <div className={styles["dropdown-card"]}>
-      {taskNum === "5" && (
+      {taskId === "5" && (
         <div className={styles["select"]}>
           <Star
             width={20}
@@ -46,7 +46,11 @@ function DropdownCard({ dropdownId, allValues }: DropdownRowType) {
         </div>
       )}
 
-      <select name="movie" onChange={(e: any) => handleChange(e)}>
+      <select
+        name="movie"
+        onChange={(e: any) => handleChange(e)}
+        value={allValues.movie}
+      >
         {rowHeaders.movies.map((movie, i) => (
           <option value={movie} key={`${dropdownId}-${i}`}>
             {movie}
@@ -54,7 +58,11 @@ function DropdownCard({ dropdownId, allValues }: DropdownRowType) {
         ))}
       </select>
 
-      <select name="schedule" onChange={(e: any) => handleChange(e)}>
+      <select
+        name="schedule"
+        onChange={(e: any) => handleChange(e)}
+        value={allValues.schedule}
+      >
         {(() => {
           if (allValues.movie === rowHeaders.movies[0]) {
             return rowHeaders.schedules[0].map((schedule, i) => (
@@ -102,7 +110,11 @@ function DropdownCard({ dropdownId, allValues }: DropdownRowType) {
         })()}
       </select>
 
-      <select name="date" onChange={(e: any) => handleChange(e)}>
+      <select
+        name="date"
+        onChange={(e: any) => handleChange(e)}
+        value={allValues.date}
+      >
         {rowHeaders.dates.map((date, i) => (
           <option value={date} key={`${dropdownId}-${i}`}>
             {date}
@@ -110,7 +122,11 @@ function DropdownCard({ dropdownId, allValues }: DropdownRowType) {
         ))}
       </select>
 
-      <select name="type" onChange={(e: any) => handleChange(e)}>
+      <select
+        name="type"
+        onChange={(e: any) => handleChange(e)}
+        value={allValues.type}
+      >
         {rowHeaders.types.map((type, i) => (
           <option value={type} key={`${dropdownId}-${i}`}>
             {type}
@@ -126,7 +142,7 @@ function DropdownCard({ dropdownId, allValues }: DropdownRowType) {
         onChange={(e: any) => handleChange(e)}
       />
 
-      {taskNum !== "6" && (
+      {taskId !== "6" && (
         <div className={styles["dropdown-card-delete"]}>
           <Delete
             width={20}

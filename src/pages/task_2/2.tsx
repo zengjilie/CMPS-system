@@ -4,6 +4,7 @@ import styles from "../../../theme/page-styles/task.module.scss";
 import MultiSelect from "../../../components/MultiSelect/MultiSelect";
 import { msTaskType } from "../../../types";
 import { useSelector } from "react-redux";
+import HelperNote from "../../../components/HelperNote/HelperNote";
 
 export default function Task22() {
   const options: msTaskType[] = useSelector(
@@ -13,7 +14,11 @@ export default function Task22() {
   return (
     <div className={styles["task"]}>
       <div className={styles["task-question"]}>
-        <h4>问题二</h4>
+        <div className={styles["task-question-header"]}>
+          <h4>问题二</h4>
+          <HelperNote text="点击一下选中，两下取消选中。" />
+        </div>
+
         <p>
           为了解决上述提出的问题，班长和其他同学搜集整理了相关信息，请你判断需要哪些信息呢（多选）？
         </p>
