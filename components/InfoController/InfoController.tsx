@@ -3,12 +3,13 @@ import styles from "./InfoController.module.scss";
 import Chat from "../Chat/Chat";
 import Info from "../Info/Info";
 import { useRouter } from "next/router";
+import { TaskSetType } from "../../types";
 
 function InfoController() {
   const [chatToggle, setChatToggle] = useState(true); // check whether the section is chat or info
 
   const router = useRouter();
-  const taskSet = router.pathname.split("/")[1];
+  const taskSet: TaskSetType = router.pathname.split("/")[1];
   return (
     <div className={styles["info-controller"]}>
       <div className={styles["info-header"]}>
@@ -29,11 +30,19 @@ function InfoController() {
       <div className={styles["info-body"]}>
         {chatToggle ? (
           <div className={styles["chat-content"]}>
-            {taskSet === "task1" ? <Chat type="movie" /> : <Chat type="tent" />}
+            {taskSet === "task_1" ? (
+              <Chat type="movie" />
+            ) : (
+              <Chat type="tent" />
+            )}
           </div>
         ) : (
           <div className={styles["info-content"]}>
-            {taskSet === "task1" ? <Info type="movie" /> : <Info type="tent" />}
+            {taskSet === "task_1" ? (
+              <Info type="movie" />
+            ) : (
+              <Info type="tent" />
+            )}
           </div>
         )}
       </div>

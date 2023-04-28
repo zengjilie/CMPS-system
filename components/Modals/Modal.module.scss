@@ -1,5 +1,32 @@
 .modal {
+  display: absolute;
+  background: rgba(0, 0, 0, 0.604);
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
   position: absolute;
-  padding: 20px;
-  background: white;
+  top: 0;
+
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translate(-50%, 0);
+    padding: 20px;
+    background: white;
+    border-radius: 0.6rem;
+    z-index: 2;
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+    }
+    .modal-buttons {
+      display: flex;
+      gap: 20px;
+    }
+  }
 }

@@ -66,7 +66,7 @@ function Signup() {
         <title>CMPS | Create-self-efficacy-scale</title>
       </Head>
       <div className={styles.signup}>
-        <h2 className={styles["signup-header"]}>创造力数学问题解决线上测试</h2>
+        <h2 className={styles["signup-header"]}>创造力数学问题解决能力测试</h2>
         <h5 className={styles["signup-subheader"]}>请填写以下信息</h5>
         <form action="submit" onSubmit={formHandler}>
           <fieldset>

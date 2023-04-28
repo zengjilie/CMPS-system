@@ -18,14 +18,14 @@ function ScrollCard({ scrollId, allValues }: ScrollRowType) {
   const dispatch = useDispatch();
 
   const router = useRouter();
-  const taskNum = router.pathname.split("/").at(-1);
+  const taskId = router.pathname.split("/").at(-1);
 
   const changeHandler = (e: any) => {
     const { value, name } = e.target;
     let data: any = { scrollId };
     data[`${name}`] = value;
 
-    if (taskNum !== "6") {
+    if (taskId !== "6") {
       dispatch(updateScroll({ ...data }));
     } else {
       dispatch(updateFinalScroll({ ...data }));
@@ -34,7 +34,7 @@ function ScrollCard({ scrollId, allValues }: ScrollRowType) {
 
   return (
     <div className={styles["scroll-card"]}>
-      {taskNum === "5" && (
+      {taskId === "5" && (
         <div className={styles["input"]}>
           <Star
             width={20}
@@ -51,6 +51,7 @@ function ScrollCard({ scrollId, allValues }: ScrollRowType) {
         name="type1"
         onChange={(e) => changeHandler(e)}
         value={allValues.type1}
+        readOnly={taskId === "5" ? true : false}
         min="0"
       />
       <input
@@ -58,6 +59,7 @@ function ScrollCard({ scrollId, allValues }: ScrollRowType) {
         name="type2"
         onChange={(e) => changeHandler(e)}
         value={allValues.type2}
+        readOnly={taskId === "5" ? true : false}
         min="0"
       />
       <input
@@ -65,6 +67,7 @@ function ScrollCard({ scrollId, allValues }: ScrollRowType) {
         name="type3"
         onChange={(e) => changeHandler(e)}
         value={allValues.type3}
+        readOnly={taskId === "5" ? true : false}
         min="0"
       />
       <input
@@ -72,9 +75,10 @@ function ScrollCard({ scrollId, allValues }: ScrollRowType) {
         name="type4"
         onChange={(e) => changeHandler(e)}
         value={allValues.type4}
+        readOnly={taskId === "5" ? true : false}
         min="0"
       />
-      {taskNum === "6" && (
+      {taskId === "6" && (
         <input
           type="number"
           name="type5"
@@ -90,9 +94,10 @@ function ScrollCard({ scrollId, allValues }: ScrollRowType) {
         value={allValues.totalprice}
         placeholder="输入总价..."
         onChange={(e: any) => changeHandler(e)}
+        readOnly={taskId === "5" ? true : false}
       />
 
-      {taskNum !== "6" && (
+      {taskId !== "6" && taskId !== "5" && (
         <div className={styles["scroll-card-delete"]}>
           <Delete
             width={20}

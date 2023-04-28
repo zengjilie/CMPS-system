@@ -35,7 +35,9 @@ function ChatCard({
           <p className={styles[role]}>
             {text}
             <br />
-            <img src={textImage} alt="" width="100%" height="auto" />
+            {textImage && (
+              <img src={textImage} alt="" width="100%" height="auto" />
+            )}
           </p>
         </div>
         <img className={styles["chat-card-avatar"]} src={image} alt="" />

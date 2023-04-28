@@ -13,6 +13,8 @@ import {
 import Button from "../Button/Button";
 import { isCurrentDataEmpty } from "./emptyChecker";
 import { finishTask } from "../../redux/slices/taskProgressSlice";
+import FinishTaskModal from "../Modals/FinishTaskModal/FinishTaskModal";
+import { toggleFTModal } from "../../redux/slices/modalSlice";
 
 function SideProgressBar() {
   const router = useRouter();
@@ -81,13 +83,9 @@ function SideProgressBar() {
           break;
       }
     }
-    console.log("data", data);
     return data;
   });
-  console.log("currentData", currentData);
 
-  console.log("isEmpty", isCurrentDataEmpty(taskId, currentData));
-  console.log(taskSet, taskId);
   // when click submit, check if this task is already finished, if true it means you are modify your answer, modal pops up
 
   //check the progress of each task
@@ -110,55 +108,57 @@ function SideProgressBar() {
 
   const nextUrlHandler = () => {
     let nextUrl: string = "";
-    if (taskId === "6") {
-      nextUrl = `/${taskSet}/exp`;
-    } else {
-      nextUrl = `/${taskSet}/${Number(taskId) + 1}`;
-    }
+    nextUrl = `/${taskSet}/${Number(taskId) + 1}`;
     router.push(nextUrl);
   };
+
   return (
-    <div className={styles["sidenav-bar"]}>
-      <div className={styles["sidenav-header"]}>
-        <h4>答题进度条</h4>
-      </div>
+    <>
+      <div className={styles["sidenav-bar"]}>
+        <div className={styles["sidenav-header"]}>
+          <h4>答题进度条</h4>
+        </div>
 
-      <div className={styles["sidenav-controller"]}>
-        <ul className={styles["sidenav-items"]}>
-          {taskOptions.map((task, i) => (
-            <li key={i}>
-              {progressChecker(task) === "unfinished" ? (
-                <span className={styles["unfinished"]}>
-                  <h4 className={styles["sidenav-text"]}>{task.name}</h4>
-                </span>
-              ) : (
-                <Link
-                  href={`/${taskSet}/${task.id}`}
-                  className={styles[progressChecker(task)]}
-                >
-                  <h4 className={styles["sidenav-text"]}>{task.name}</h4>
-                </Link>
-              )}
-            </li>
-          ))}
-        </ul>
+        <div className={styles["sidenav-controller"]}>
+          <ul className={styles["sidenav-items"]}>
+            {taskOptions.map((task, i) => (
+              <li key={i}>
+                {progressChecker(task) === "unfinished" ? (
+                  <span className={styles["unfinished"]}>
+                    <h4 className={styles["sidenav-text"]}>{task.name}</h4>
+                  </span>
+                ) : (
+                  <Link
+                    href={`/${taskSet}/${task.id}`}
+                    className={styles[progressChecker(task)]}
+                  >
+                    <h4 className={styles["sidenav-text"]}>{task.name}</h4>
+                  </Link>
+                )}
+              </li>
+            ))}
+          </ul>
 
-        <div className={styles["sidenav-btns"]}>
-          <Button
-            click={submitHandler}
-            text="提交"
-            type={
-              isCurrentDataEmpty(taskId, currentData) ? "inactive" : "primary"
-            }
-          />
-          <Button
-            click={nextUrlHandler}
-            text={taskId === "6" ? "结束作答" : "下一题"}
-            type={currentTask.finished ? "primary" : "inactive"}
-          />
+          <div className={styles["sidenav-btns"]}>
+            <Button
+              click={submitHandler}
+              text="提交"
+              type={
+                isCurrentDataEmpty(taskId, currentData) ? "inactive" : "primary"
+              }
+            />
+            <Button
+              click={() =>
+                taskId === "6" ? dispatch(toggleFTModal()) : nextUrlHandler()
+              }
+              text={taskId === "6" ? "结束作答" : "下一题"}
+              type={currentTask.finished ? "primary" : "inactive"}
+            />
+          </div>
         </div>
       </div>
-    </div>
+      <FinishTaskModal />
+    </>
   );
 }
 

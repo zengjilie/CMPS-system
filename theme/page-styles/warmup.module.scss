@@ -12,11 +12,12 @@
   .warmup-text {
   }
   .warmup-image {
-    width: 400px;
+    width: 100%;
     height: auto;
   }
   .warmup-buttons {
     display: flex;
     gap: 20px;
+    justify-content: end;
   }
 }

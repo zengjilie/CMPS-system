@@ -50,7 +50,7 @@ function DropdownMenuController() {
               );
             }
           })}
-          {taskId !== "6" && (
+          {taskId !== "6" && taskId !== "5" && (
             <div className={styles["dropdowns-row-padding"]}></div>
           )}
         </div>
@@ -71,7 +71,7 @@ function DropdownMenuController() {
           />
         )}
 
-        {taskId !== "6" && (
+        {taskId !== "6" && taskId !== "5" && (
           <div
             className={styles["add-dropdown-btn"]}
             onClick={() => dispatch(addDropdown({ dropdownId: uuidv4() }))}

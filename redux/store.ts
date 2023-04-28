@@ -14,6 +14,7 @@ import ms from "./slices/multiSelectSlice";
 import text from "./slices/textSlice";
 import taskExp from "./slices/taskExpSlice";
 import mpsas from "./slices/mpsasSlice";
+import modal from "./slices/modalSlice";
 
 const allReducers = combineReducers({
   taskProgress,
@@ -30,6 +31,7 @@ const allReducers = combineReducers({
   text,
   taskExp,
   mpsas,
+  modal,
 });
 
 const masterReducer = (state: any, action: any) => {

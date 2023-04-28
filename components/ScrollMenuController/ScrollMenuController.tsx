@@ -21,7 +21,7 @@ function ScrollMenuController() {
     (state: any) => state.scrolls.finalScroll
   );
 
-  const taskNum = router.pathname.split("/").at(-1);
+  const taskId = router.pathname.split("/").at(-1);
 
   return (
     <div className={styles["scrolls-controller"]}>
@@ -29,12 +29,11 @@ function ScrollMenuController() {
         <div className={styles["scrolls-row-headers"]}>
           {rowHeaders.map((header, i) => {
             if (
-              ((taskNum === "4" || taskNum === "6") &&
-                header.name === "红星") ||
-              (taskNum !== "6" && header.name === "D")
+              ((taskId === "4" || taskId === "6") && header.name === "红星") ||
+              (taskId !== "6" && header.name === "D")
             ) {
               return <></>;
-            } else if (taskNum === "5" && header.name === "红星") {
+            } else if (taskId === "5" && header.name === "红星") {
               return (
                 <div
                   className={styles["scrolls-row-header"]}
@@ -54,12 +53,12 @@ function ScrollMenuController() {
               );
             }
           })}
-          {taskNum !== "6" && (
+          {taskId !== "6" && taskId !== "5" && (
             <div className={styles["scrolls-row-padding"]}></div>
           )}
         </div>
 
-        {taskNum !== "6" ? (
+        {taskId !== "6" ? (
           <>
             {scrolls.map((scroll, i) => (
               <ScrollCard
@@ -76,7 +75,7 @@ function ScrollMenuController() {
           />
         )}
 
-        {taskNum !== "6" && (
+        {taskId !== "6" && taskId !== "5" && (
           <div
             className={styles["add-scroll-btn"]}
             onClick={() => dispatch(addScroll({ scrollId: uuidv4() }))}

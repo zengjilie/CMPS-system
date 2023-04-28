@@ -4,6 +4,8 @@ import SideControllers from "./SideControllers/SideControllers";
 import SideProgressBar from "./SideProgressBar/SideProgressBar";
 import styles from "./Layout.module.scss";
 import { useRouter } from "next/router";
+import FinishTaskModal from "./Modals/FinishTaskModal/FinishTaskModal";
+import ChangeAnswerModal from "./Modals/ChangeAnswerModal/ChangeAnswerModal";
 
 function Layout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
