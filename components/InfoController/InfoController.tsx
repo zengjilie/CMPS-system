@@ -9,7 +9,7 @@ function InfoController() {
   const [chatToggle, setChatToggle] = useState(true); // check whether the section is chat or info
 
   const router = useRouter();
-  const taskSet: TaskSetType = router.pathname.split("/")[1];
+  const taskSet: TaskSetType = router.pathname.split("/")[1] as TaskSetType;
   return (
     <div className={styles["info-controller"]}>
       <div className={styles["info-header"]}>
