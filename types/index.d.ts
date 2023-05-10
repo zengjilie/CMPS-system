@@ -17,7 +17,12 @@ export interface TaskProgressState {
 }
 
 export interface UserState {
+  class: string;
   fullname: string;
+  grade: string;
+  school: string;
+  schoolId: string;
+  sex: string;
 }
 
 //Info Type

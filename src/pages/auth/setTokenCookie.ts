@@ -1,6 +1,6 @@
 import { v4 as uuid } from "uuid";
 
-const setTokenCookie = (studentId: string) => {
+const setTokenCookie = () => {
   //Update session table, sessionId, studentId
   const sessionId = uuid();
 
