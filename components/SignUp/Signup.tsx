@@ -5,6 +5,7 @@ import styles from "./SignUp.module.scss";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import setTokenCookie from "@/pages/auth/setTokenCookie";
+import API from "../../lib/hooks/api";
 
 function Signup() {
   const [errors, setErrors] = useState<any>({});
@@ -25,10 +26,10 @@ function Signup() {
   const { inputs, handleChange } = useForm({
     school: schools[0],
     grade: grades[0],
-    class: classes[0],
+    userclass: classes[0],
     fullname: "",
     sex: sexes[0],
-    schoolId: "",
+    studentid: "",
   });
 
   // handle submit form
@@ -44,6 +45,8 @@ function Signup() {
       console.log("inputs", inputs);
 
       //get user token
+      const response = await API.post({ path: "/users", data: inputs });
+      console.log(response);
       //Get StudentId in return
 
       setTokenCookie();
@@ -90,8 +93,8 @@ function Signup() {
             </fieldset>
 
             <fieldset>
-              <label htmlFor="class">班级</label>
-              <select id="class" name="class" onChange={handleChange}>
+              <label htmlFor="userclass">班级</label>
+              <select id="userclass" name="userclass" onChange={handleChange}>
                 {classes.map((claz, id) => (
                   <option key={id} value={claz}>
                     {claz}
@@ -128,13 +131,13 @@ function Signup() {
             )}
 
             <fieldset>
-              <label htmlFor="schoolId">学号</label>
+              <label htmlFor="studentid">学号</label>
               <input
                 type="text"
-                id="schoolId"
-                name="schoolId"
+                id="studentid"
+                name="studentid"
                 placeholder={"请输入你的学号"}
-                value={inputs.schoolId}
+                value={inputs.studentid}
                 onChange={handleChange}
                 onKeyDown={() => setErrors({ ...errors, schoolId: "" })}
               />
