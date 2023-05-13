@@ -5,7 +5,7 @@ import styles from "./SignUp.module.scss";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import setTokenCookie from "@/pages/auth/setTokenCookie";
-import API from "../../lib/hooks/api";
+import API from "../../lib/api";
 
 function Signup() {
   const [errors, setErrors] = useState<any>({});
