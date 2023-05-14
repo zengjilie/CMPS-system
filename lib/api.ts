@@ -1,4 +1,5 @@
 import Axios, { AxiosRequestConfig } from "axios";
+import { UserType } from "../types";
 
 const BASE_URL =
   "https://xqvgyy0ll7.execute-api.ap-northeast-1.amazonaws.com/prod";
@@ -37,6 +38,7 @@ export const API = {
     };
 
     const response = await Axios.request<T>(config);
-    return response;
+    console.log("response", response);
+    return response.data;
   },
 };

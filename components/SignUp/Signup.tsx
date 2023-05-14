@@ -6,15 +6,16 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import setTokenCookie from "@/pages/auth/setTokenCookie";
 import { API } from "../../lib/api";
+import { UserType } from "../../types";
+import { useDispatch } from "react-redux";
+import { setUserInfo } from "../../redux/slices/userSlice";
+import ClipLoader from "react-spinners/ClipLoader";
 
 function Signup() {
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<any>({});
   const router = useRouter();
-
-  //Check browser  hiddecookie
-  //If cookie exist, then auto signin
-  //Get task state from database
-  //Task the user the where he left
+  const dispatch = useDispatch();
 
   // Limited Options the user can select
   const schools = ["A初中", "B初中"];
@@ -44,15 +45,31 @@ function Signup() {
     } else {
       console.log("inputs", inputs);
 
-      //get user token
-      const response = await API.post({ path: "/users", data: inputs });
-      console.log(response);
-      //Get StudentId in return
+      setLoading(true);
+      // Get User Info, add user to db
+      const { data }: { data: UserType } = await API.post({
+        path: "/users",
+        data: inputs,
+      });
 
+      console.log(data);
+      //set global fullname and userid
+
+      dispatch(
+        setUserInfo({
+          userclass: data.userclass,
+          fullname: data.fullname,
+          grade: data.grade,
+          school: data.school,
+          studentid: data.studentid,
+          sex: data.sex,
+          userid: data.userid,
+        })
+      );
+      //set cookie, cookie only last for 2 hours
       setTokenCookie();
 
-      //Update task redux store
-
+      setLoading(false);
       //Direct the user to the next page
       router.push("/intro");
     }
@@ -142,12 +159,16 @@ function Signup() {
                 onKeyDown={() => setErrors({ ...errors, schoolId: "" })}
               />
             </fieldset>
-            {errors.schoolId && (
-              <small className={styles.error}>{errors.schoolId}</small>
+            {errors.studentid && (
+              <small className={styles.error}>{errors.studentid}</small>
             )}
 
             <button type="submit" className={styles["signup-btn"]}>
-              登录
+              {!loading ? (
+                <span>登录</span>
+              ) : (
+                <ClipLoader color="#fff" loading={true} size={20} />
+              )}
             </button>
           </form>
         </div>

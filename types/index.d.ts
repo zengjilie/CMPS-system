@@ -1,3 +1,8 @@
+//User Type
+export interface UserState {
+  userInfo: UserType;
+  userid: string;
+}
 //Task Type
 export interface TaskProgressType {
   id: stirng;
@@ -14,15 +19,6 @@ export interface TaskProgressOptionType {
 export interface TaskProgressState {
   task_1: TaskProgressOptionType;
   task_2: TaskProgressOptionType;
-}
-
-export interface UserState {
-  class: string;
-  fullname: string;
-  grade: string;
-  school: string;
-  schoolId: string;
-  sex: string;
 }
 
 //Info Type
@@ -159,3 +155,30 @@ export interface CurrentDataType {
 
 export type TaskSetType = "task_1" | "task_2";
 export type TaskIdType = "1" | "2" | "3" | "4" | "5" | "6" | "exp";
+
+//UserType
+export interface UserType {
+  userid?: string;
+  userclass: string;
+  fullname: string;
+  grade: string;
+  school: string;
+  studentid: string;
+  sex: string;
+  createdat?: string;
+  usertoken?: string;
+}
+
+//RecordType
+export interface RecordType {
+  recordid: string;
+  userid: string;
+  taskcode: string;
+  action: string;
+  section: string;
+  createdat: string;
+  answer1: string;
+  answer2: string;
+  answer3: string;
+  notes: string;
+}

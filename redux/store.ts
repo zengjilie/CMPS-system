@@ -15,6 +15,9 @@ import text from "./slices/textSlice";
 import taskExp from "./slices/taskExpSlice";
 import mpsas from "./slices/mpsasSlice";
 import modal from "./slices/modalSlice";
+import record from "./slices/recordSlice";
+import { persistReducer, persistStore } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
 const allReducers = combineReducers({
   taskProgress,
@@ -32,7 +35,14 @@ const allReducers = combineReducers({
   taskExp,
   mpsas,
   modal,
+  record,
 });
+
+//config persist config
+const persistConfig = {
+  key: "root",
+  storage,
+};
 
 const masterReducer = (state: any, action: any) => {
   if (action.type === HYDRATE) {
@@ -47,10 +57,12 @@ const masterReducer = (state: any, action: any) => {
   return allReducers(state, action);
 };
 
-const makeStore = (context: Context) => {
-  return configureStore({
-    reducer: masterReducer,
-  });
+const persistedReducer = persistReducer(persistConfig, masterReducer);
+
+const makeStore = (context?: Context) => {
+  const store: any = configureStore({ reducer: persistedReducer });
+  store["__persistor"] = persistStore(store);
+  return store;
 };
 
 export const wrapper = createWrapper<Store<any>>(makeStore, { debug: true });
