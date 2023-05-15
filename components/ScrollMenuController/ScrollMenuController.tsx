@@ -32,7 +32,7 @@ function ScrollMenuController() {
               ((taskId === "4" || taskId === "6") && header.name === "红星") ||
               (taskId !== "6" && header.name === "D")
             ) {
-              return <></>;
+              return <React.Fragment key={`row-header${i}`}></React.Fragment>;
             } else if (taskId === "5" && header.name === "红星") {
               return (
                 <div
