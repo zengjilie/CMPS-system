@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import Layout from "../../../components/Layout";
 import styles from "../../../theme/page-styles/task.module.scss";
 import TextInput from "../../../components/TextInput/TextInput";
-import { useDispatch, useSelector } from "react-redux";
-import { updateText } from "../../../redux/slices/textSlice";
+import { useSelector } from "react-redux";
 
 export default function Task11() {
   const text: string = useSelector((state: any) => state.text["task_1_1_a"]);

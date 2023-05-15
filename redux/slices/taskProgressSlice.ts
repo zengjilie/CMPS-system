@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { TaskProgressState } from "../../types";
+import { TaskProgressState, TaskSetType } from "../../types";
 
 const initialState: TaskProgressState = {
   task_1: {
@@ -104,9 +104,7 @@ const taskSlice = createSlice({
   reducers: {
     finishTask: (
       state: TaskProgressState,
-      {
-        payload,
-      }: PayloadAction<{ taskSet: keyof TaskProgressState; taskId: string }>
+      { payload }: PayloadAction<{ taskSet: TaskSetType; taskId: string }>
     ) => {
       state[payload.taskSet].taskOptions[Number(payload.taskId) - 1].finished =
         true; // update task's finished state to true

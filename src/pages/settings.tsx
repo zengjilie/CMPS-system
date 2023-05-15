@@ -10,6 +10,7 @@ import { UserType } from "../../types";
 import { API } from "../../lib/api";
 import { setUserInfo } from "../../redux/slices/userSlice";
 import { ClipLoader } from "react-spinners";
+import Button from "../../components/Button/Button";
 
 export default function Settings() {
   const { userInfo, userid } = useSelector((state: any) => state.user);
@@ -161,6 +162,7 @@ export default function Settings() {
           )}
         </button>
       </form>
+      <Button text="返回作答" type="primary" click={() => router.back()} />
     </div>
   );
 }

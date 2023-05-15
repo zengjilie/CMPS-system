@@ -2,16 +2,37 @@ import React from "react";
 import styles from "../Modal.module.scss";
 import Button from "../../Button/Button";
 import { useRouter } from "next/router";
-import { TaskSetType } from "../../../types";
+import { RecordType, TaskIdType, TaskSetType } from "../../../types";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleFTModal } from "../../../redux/slices/modalSlice";
+import { addLastRecord, addRecord } from "../../../redux/slices/recordSlice";
 
 function FinishTaskModal() {
+  const userid = useSelector((state: any) => state.user.userid);
   const router = useRouter();
   const taskSet: TaskSetType = router.pathname.split("/")[1] as TaskSetType;
-  const dispatch = useDispatch();
+  const taskId: TaskIdType = router.pathname.split("/").at(-1) as TaskIdType;
+  const dispatch = useDispatch<any>();
   const isOpen = useSelector((state: any) => state.modal.isFinishTaskModalOpen);
 
+  const handleEndTask = () => {
+    const record: RecordType = {
+      userid: userid,
+      taskcode: `${taskSet === "task_1" ? "A" : "B"}${taskId}`,
+      action: "taskend",
+      section: "system",
+      createdat: new Date().toISOString(),
+    };
+
+    if (taskSet === "task_2" && taskId === "6") {
+      dispatch(addLastRecord({ record }));
+    } else {
+      dispatch(addRecord({ record }));
+    }
+
+    dispatch(toggleFTModal());
+    router.push(`/${taskSet}/exp`);
+  };
   return (
     <>
       {isOpen && (
@@ -32,7 +53,7 @@ function FinishTaskModal() {
               />
               <Button
                 text="结束作答"
-                click={() => router.push(`/${taskSet}/exp`)}
+                click={() => handleEndTask()}
                 type="primary"
               />
             </div>

@@ -4,11 +4,30 @@ import Layout from "../../components/Layout";
 import Button from "../../components/Button/Button";
 import { useRouter } from "next/router";
 import Delete from "../../components/Icon/Delete";
+import { RecordType } from "../../types";
+import { useDispatch, useSelector } from "react-redux";
+import { addRecord } from "../../redux/slices/recordSlice";
+import { Dispatch } from "@reduxjs/toolkit";
 
 export default function Warmup() {
   const router = useRouter();
   const [imageId, setImageId] = useState(0);
+  const userid = useSelector((state: any) => state.user.userid);
+  const dispatch = useDispatch<Dispatch<any>>();
 
+  const handleNext = () => {
+    const record: RecordType = {
+      userid: userid,
+      taskcode: "A0",
+      action: "systemstart",
+      section: "system",
+      createdat: new Date().toISOString(),
+    };
+
+    dispatch(addRecord({ record }));
+
+    router.push("/task_1");
+  };
   return (
     <div className={styles["warmup"]}>
       <h2 className={styles["warmup-header"]}>系统简介</h2>
@@ -52,9 +71,7 @@ export default function Warmup() {
         />
         <Button
           text={imageId === 9 ? "结束热身" : "下一步"}
-          click={() =>
-            imageId === 9 ? router.push("/task_1") : setImageId(imageId + 1)
-          }
+          click={() => (imageId === 9 ? handleNext() : setImageId(imageId + 1))}
           type="primary"
         />
       </div>

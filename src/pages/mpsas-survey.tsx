@@ -1,13 +1,15 @@
 import React, { Fragment, useState } from "react";
 import styles from "../../theme/page-styles/task.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { mpsasTaskType } from "../../types";
+import { SurveyType, mpsasTaskType } from "../../types";
 import { useRouter } from "next/router";
 import { updateMPSASScore } from "../../redux/slices/mpsasSlice";
 import Layout from "../../components/Layout";
 import Button from "../../components/Button/Button";
+import { API } from "../../lib/api";
 
 export default function MPSASSurvey() {
+  const userid = useSelector((state: any) => state.user.userid);
   const [error, setError] = useState<boolean>(false);
   const allTasks: mpsasTaskType[] = useSelector(
     (state: any) => state.mpsas?.allTasks
@@ -15,7 +17,7 @@ export default function MPSASSurvey() {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const handleClick = () => {
+  const handleClick = async () => {
     //check if user answered all questions
     const unfinishedTask = allTasks.filter(
       (task: mpsasTaskType) => task.score === 0
@@ -24,6 +26,18 @@ export default function MPSASSurvey() {
     if (unfinishedTask.length > 0) {
       setError(true);
     } else {
+      //construct survey
+      let survey: SurveyType = {
+        userid,
+        taskcode: "MPSAS",
+        answer: "",
+      };
+
+      survey.answer = allTasks.map((i) => i.score).join("|");
+
+      //API
+      const response = await API.post({ path: "/surveys", data: survey });
+
       router.push("/thankyou");
     }
   };
@@ -68,6 +82,7 @@ export default function MPSASSurvey() {
                   id={`score-1-${i}`}
                   name="score"
                   value="1"
+                  defaultChecked={task.score === 1 ? true : false}
                 />
               </div>
 
@@ -77,6 +92,7 @@ export default function MPSASSurvey() {
                   id={`score-2-${i}`}
                   name="score"
                   value="2"
+                  defaultChecked={task.score === 2 ? true : false}
                 />
               </div>
 
@@ -86,6 +102,7 @@ export default function MPSASSurvey() {
                   id={`score-3-${i}`}
                   name="score"
                   value="3"
+                  defaultChecked={task.score === 3 ? true : false}
                 />
               </div>
 
@@ -95,6 +112,7 @@ export default function MPSASSurvey() {
                   id={`score-4-${i}`}
                   name="score"
                   value="4"
+                  defaultChecked={task.score === 4 ? true : false}
                 />
               </div>
 
@@ -104,6 +122,7 @@ export default function MPSASSurvey() {
                   id={`score-5-${i}`}
                   name="score"
                   value="5"
+                  defaultChecked={task.score === 5 ? true : false}
                 />
               </div>
             </form>

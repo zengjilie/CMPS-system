@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { TaskExpState } from "../../types";
+import { TaskExpState, TaskSetType } from "../../types";
 
 const initialState: TaskExpState = {
   task_1: {
@@ -124,12 +124,12 @@ const taskExpSlice = createSlice({
       {
         payload,
       }: PayloadAction<{
-        taskId: keyof TaskExpState;
+        taskSet: keyof TaskExpState;
         taskNum: number;
         score: number;
       }>
     ) => {
-      state[payload.taskId].taskOptions[payload.taskNum].score = payload.score;
+      state[payload.taskSet].taskOptions[payload.taskNum].score = payload.score;
     },
   },
 });

@@ -171,14 +171,20 @@ export interface UserType {
 
 //RecordType
 export interface RecordType {
-  recordid: string;
   userid: string;
   taskcode: string;
   action: string;
   section: string;
   createdat: string;
-  answer1: string;
-  answer2: string;
-  answer3: string;
-  notes: string;
+  answer1?: string;
+  answer2?: string;
+  answer3?: string;
+  notes?: string;
+}
+
+//SurveyType
+export interface SurveyType {
+  userid: string;
+  taskcode: "A" | "B" | "ALL" | "MPSAS";
+  answer: string;
 }

@@ -4,10 +4,24 @@ import styles from "../../../theme/page-styles/task.module.scss";
 import Button from "../../../components/Button/Button";
 import { useRouter } from "next/router";
 import Layout from "../../../components/Layout";
+import { RecordType } from "../../../types";
+import { useDispatch, useSelector } from "react-redux";
+import { addRecord } from "../../../redux/slices/recordSlice";
 
 export default function Task1Intro() {
+  const dispatch = useDispatch<any>();
   const router = useRouter();
+  const userid = useSelector((state: any) => state.user.userid);
+
   const handleClick = () => {
+    const record: RecordType = {
+      userid: userid,
+      taskcode: "B0",
+      action: "taskstart",
+      section: "system",
+      createdat: new Date().toISOString(),
+    };
+    dispatch(addRecord({ record }));
     router.push("/task_2/1");
   };
 

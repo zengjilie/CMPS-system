@@ -7,10 +7,6 @@
   position: relative;
   gap: 20px;
 
-  .warmup-header {
-  }
-  .warmup-text {
-  }
   .warmup-image {
     width: 100%;
     height: auto;
@@ -19,5 +15,9 @@
     display: flex;
     gap: 20px;
     justify-content: end;
+
+    button {
+      max-width: 200px;
+    }
   }
 }

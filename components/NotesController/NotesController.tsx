@@ -1,22 +1,37 @@
 import React, { useEffect, useState } from "react";
 import styles from "./NotesController.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { NoteType, TaskIdType, TaskSetType } from "../../types";
+import { NoteType, RecordType, TaskIdType, TaskSetType } from "../../types";
 import Plus from "../Icon/Plus";
 import { addNote } from "../../redux/slices/noteSlice";
 import NoteCard from "../NoteCard/NoteCard";
 import { v4 as uuidv4 } from "uuid";
-import Info from "../Icon/Info";
 import { useRouter } from "next/router";
 import HelperNote from "../HelperNote/HelperNote";
+import { addRecord } from "../../redux/slices/recordSlice";
 
 function NotesController() {
+  const userid = useSelector((state: any) => state.user.userid);
   const router = useRouter();
   const taskSet: TaskSetType = router.pathname.split("/")[1] as TaskSetType;
+  const taskId: TaskIdType = router.pathname.split("/").at(-1) as TaskIdType;
   const notes: NoteType[] = useSelector(
     (state: any) => state.notes[taskSet].allNotes
   );
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
+
+  const handleNoteClick = () => {
+    dispatch(addNote({ taskSet, noteId: uuidv4() }));
+
+    const record: RecordType = {
+      userid: userid,
+      taskcode: `${taskSet === "task_1" ? "A" : "B"}${taskId}`,
+      action: `addnote${taskId}`,
+      section: "note",
+      createdat: new Date().toISOString(),
+    };
+    dispatch(addRecord({ record }));
+  };
 
   return (
     <div className={styles["notes-controller"]}>
@@ -32,7 +47,7 @@ function NotesController() {
         ))}
         <div
           className={styles["add-note-btn"]}
-          onClick={() => dispatch(addNote({ taskSet, noteId: uuidv4() }))}
+          onClick={() => handleNoteClick()}
         >
           <Plus className={styles["add-note-icon"]} height={20} width={20} />
           <p>增加笔记 . . .</p>

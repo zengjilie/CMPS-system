@@ -15,7 +15,7 @@ import text from "./slices/textSlice";
 import taskExp from "./slices/taskExpSlice";
 import mpsas from "./slices/mpsasSlice";
 import modal from "./slices/modalSlice";
-import record from "./slices/recordSlice";
+import records from "./slices/recordSlice";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
@@ -35,7 +35,7 @@ const allReducers = combineReducers({
   taskExp,
   mpsas,
   modal,
-  record,
+  records,
 });
 
 //config persist config
@@ -59,8 +59,13 @@ const masterReducer = (state: any, action: any) => {
 
 const persistedReducer = persistReducer(persistConfig, masterReducer);
 
+// Batch write records
 const makeStore = (context?: Context) => {
-  const store: any = configureStore({ reducer: persistedReducer });
+  const store: any = configureStore({
+    reducer: persistedReducer,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({ serializableCheck: false }),
+  });
   store["__persistor"] = persistStore(store);
   return store;
 };

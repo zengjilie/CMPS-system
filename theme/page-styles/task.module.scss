@@ -7,7 +7,9 @@
   justify-content: center;
   margin: 60px 0;
   position: relative;
-
+  button {
+    max-width: 200px;
+  }
   h4 {
     margin-bottom: 40px;
     p:last-child {
@@ -52,6 +54,9 @@
   max-width: 800px;
   padding: 50px 0;
 
+  button {
+    max-width: 200px;
+  }
   .survey {
     width: 100%;
     display: grid;

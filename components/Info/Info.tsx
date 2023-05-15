@@ -1,10 +1,11 @@
 import React from "react";
 import styles from "./Info.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { InfoType } from "../../types";
+import { InfoType, RecordType, TaskIdType, TaskSetType } from "../../types";
 import { setCurrentMovieInfo } from "../../redux/slices/movieInfoSlice";
 import { setCurrentTentInfo } from "../../redux/slices/tentInfoSlice";
 import { useRouter } from "next/router";
+import { addRecord } from "../../redux/slices/recordSlice";
 
 function Info({ type }: { type: string }) {
   const movieInfos: InfoType[] = useSelector(
@@ -13,10 +14,28 @@ function Info({ type }: { type: string }) {
   const tentInfos: InfoType[] = useSelector(
     (state: any) => state.tentInfo.allInfos
   );
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
   const router = useRouter();
-  const path = router.asPath;
-  console.log(path);
+  const userid = useSelector((state: any) => state.user.userid);
+  const taskSet: TaskSetType = router.pathname.split("/")[1] as TaskSetType;
+  const taskId: TaskIdType = router.pathname.split("/").at(-1) as TaskIdType;
+
+  const handleInfoClick = (infoNum: number) => {
+    if (taskSet === "task_1") {
+      dispatch(setCurrentMovieInfo({ infoNum }));
+    } else {
+      dispatch(setCurrentTentInfo({ infoNum }));
+    }
+
+    const record: RecordType = {
+      userid: userid,
+      taskcode: `${taskSet === "task_1" ? "A" : "B"}${taskId}`,
+      action: `info${taskId}_${infoNum + 1}`,
+      section: "interaction",
+      createdat: new Date().toISOString(),
+    };
+    dispatch(addRecord({ record }));
+  };
 
   if (type === "movie") {
     return (
@@ -29,7 +48,7 @@ function Info({ type }: { type: string }) {
                 className={`${styles["info-nav-item"]} ${
                   info.on ? styles["on"] : styles["off"]
                 }`}
-                onClick={() => dispatch(setCurrentMovieInfo({ infoNum: i }))}
+                onClick={() => handleInfoClick(i)}
               >
                 {info.name}
               </li>
@@ -207,7 +226,7 @@ function Info({ type }: { type: string }) {
               </small>
             </>
           )}
-          {movieInfos[7].on && path === "/task1/6" && (
+          {movieInfos[7].on && (
             <>
               <h5>最喜爱电影排名调查结果</h5>
               <table>
@@ -256,7 +275,7 @@ function Info({ type }: { type: string }) {
                 className={`${styles["info-nav-item"]} ${
                   info.on ? styles["on"] : styles["off"]
                 }`}
-                onClick={() => dispatch(setCurrentTentInfo({ infoNum: i }))}
+                onClick={() => handleInfoClick(i)}
               >
                 {info.name}
               </li>
@@ -322,7 +341,7 @@ function Info({ type }: { type: string }) {
               <small>晚间睡前检查火源是否熄灭，帐篷是否固定结实。</small>
             </>
           )}
-          {tentInfos[4].on && path !== "/task2/6" && (
+          {tentInfos[4].on && (
             <>
               <h5>帐篷介绍</h5>
               <table>
@@ -391,7 +410,7 @@ function Info({ type }: { type: string }) {
               <small>价格：表中所示价格为租赁一晚（不超过24h）的价格。</small>
             </>
           )}
-          {tentInfos[4].on && path === "/task2/6" && (
+          {tentInfos[4].on && (
             <>
               <h5>帐篷介绍</h5>
               <table>

@@ -2,12 +2,19 @@ import React, { Fragment, useState } from "react";
 import styles from "../../theme/page-styles/task.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { TaskExpState, TaskExpType, TaskOptionType } from "../../types";
+import {
+  SurveyType,
+  TaskExpState,
+  TaskExpType,
+  TaskOptionType,
+} from "../../types";
 import Layout from "../../components/Layout";
 import Button from "../../components/Button/Button";
 import { updateTaskExpScore } from "../../redux/slices/taskExpSlice";
+import { API } from "../../lib/api";
 
 export default function TaskExp() {
+  const userid = useSelector((state: any) => state.user.userid);
   const [error, setError] = useState<boolean>(false);
   const router = useRouter();
   const dispatch = useDispatch();
@@ -16,7 +23,7 @@ export default function TaskExp() {
     (state: any) => state.taskExp["task_all"] || {}
   );
 
-  const handleClick = () => {
+  const handleClick = async () => {
     // check if user answered all questions
     const unfinishedTask = taskOptions.filter(
       (task: TaskOptionType) => task.score === 0
@@ -24,6 +31,19 @@ export default function TaskExp() {
     if (unfinishedTask.length > 0) {
       setError(true);
     } else {
+      //construct survey
+      let survey: SurveyType = {
+        userid,
+        taskcode: "ALL",
+        answer: "",
+      };
+
+      survey.answer = taskOptions.map((i) => i.score).join("|");
+
+      //API
+      const response = await API.post({ path: "/surveys", data: survey });
+
+      console.log("survey", survey);
       router.push("/mpsas-survey");
     }
   };
@@ -32,7 +52,9 @@ export default function TaskExp() {
     const value = Number(e.target.value);
     const taskNum = Number(e.target.id.split("-")[2]);
 
-    dispatch(updateTaskExpScore({ taskId: "task_all", taskNum, score: value }));
+    dispatch(
+      updateTaskExpScore({ taskSet: "task_all", taskNum, score: value })
+    );
   };
 
   return (
@@ -65,6 +87,7 @@ export default function TaskExp() {
                   id={`score-1-${i}`}
                   name="score"
                   value="1"
+                  defaultChecked={task.score === 1 ? true : false}
                 />
               </div>
 
@@ -74,6 +97,7 @@ export default function TaskExp() {
                   id={`score-2-${i}`}
                   name="score"
                   value="2"
+                  defaultChecked={task.score === 2 ? true : false}
                 />
               </div>
 
@@ -83,6 +107,7 @@ export default function TaskExp() {
                   id={`score-3-${i}`}
                   name="score"
                   value="3"
+                  defaultChecked={task.score === 3 ? true : false}
                 />
               </div>
 
@@ -92,6 +117,7 @@ export default function TaskExp() {
                   id={`score-4-${i}`}
                   name="score"
                   value="4"
+                  defaultChecked={task.score === 4 ? true : false}
                 />
               </div>
 
@@ -101,6 +127,7 @@ export default function TaskExp() {
                   id={`score-5-${i}`}
                   name="score"
                   value="5"
+                  defaultChecked={task.score === 5 ? true : false}
                 />
               </div>
             </form>

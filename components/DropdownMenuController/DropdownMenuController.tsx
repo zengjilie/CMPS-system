@@ -29,7 +29,7 @@ function DropdownMenuController() {
         <div className={styles["dropdowns-row-headers"]}>
           {rowHeaders.names.map((name, i) => {
             if ((taskId === "4" || taskId === "6") && name === "红星") {
-              return <></>;
+              return <React.Fragment key={`row-header${i}`}></React.Fragment>;
             } else if (taskId === "5" && name === "红星") {
               return (
                 <div

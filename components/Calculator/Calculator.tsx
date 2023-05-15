@@ -3,10 +3,18 @@ import Display from "./Display";
 import Buttons from "./Buttons";
 import styles from "./Calculator.module.scss";
 import { evaluate, round } from "mathjs";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Draggable from "react-draggable";
+import { RecordType, TaskIdType, TaskSetType } from "../../types";
+import { useRouter } from "next/router";
+import { addRecord } from "../../redux/slices/recordSlice";
 
 function Calculator() {
+  const userid = useSelector((state: any) => state.user.userid);
+  const router = useRouter();
+  const dispatch = useDispatch<any>();
+  const taskSet: TaskSetType = router.pathname.split("/")[1] as TaskSetType;
+  const taskId: TaskIdType = router.pathname.split("/").at(-1) as TaskIdType;
   //@ts-ignore
   const [input, setInput] = useState<string>("");
   const [answer, setAnswer] = useState<string>("");
@@ -89,6 +97,16 @@ function Calculator() {
         throw errorMessage;
       }
       result = evaluate(finalexpression); //mathjs
+
+      const record: RecordType = {
+        userid: userid,
+        taskcode: `${taskSet === "task_1" ? "A" : "B"}${taskId}`,
+        action: "calculate",
+        section: "answer",
+        createdat:new Date().toISOString(),
+      };
+
+      dispatch(addRecord({ record }));
     } catch (error: any) {
       //@ts-ignore
       result =

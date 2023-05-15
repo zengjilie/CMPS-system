@@ -2,32 +2,39 @@ import React, { Fragment, useState } from "react";
 import styles from "../../../theme/page-styles/task.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { TaskExpState, TaskExpType, TaskOptionType } from "../../../types";
+import {
+  SurveyType,
+  TaskExpState,
+  TaskExpType,
+  TaskOptionType,
+} from "../../../types";
 import Layout from "../../../components/Layout";
 import Button from "../../../components/Button/Button";
 import { updateTaskExpScore } from "../../../redux/slices/taskExpSlice";
+import { API } from "../../../lib/api";
 
 export default function TaskExp() {
+  const userid = useSelector((state: any) => state.user.userid);
   const [error, setError] = useState<boolean>(false);
   const router = useRouter();
   const path: string = router.asPath;
-  const taskId: keyof TaskExpState = path.split("/")[1] as keyof TaskExpState;
+  const taskSet: keyof TaskExpState = path.split("/")[1] as keyof TaskExpState;
   const dispatch = useDispatch();
 
   const { taskName, taskOptions }: TaskExpType = useSelector(
-    (state: any) => state.taskExp[taskId] || {}
+    (state: any) => state.taskExp[taskSet] || {}
   );
 
   const getNextTaskUrl = (): string => {
-    if (taskId === "task_1") {
+    if (taskSet === "task_1") {
       return "/task_2";
-    } else if (taskId === "task_2") {
-      return "/task-exp-all";
+    } else if (taskSet === "task_2") {
+      return "/task_all";
     }
     return "";
   };
 
-  const handleClick = () => {
+  const handleClick = async () => {
     // check if user answered all questions
     const unfinishedTask = taskOptions.filter(
       (task: TaskOptionType) => task.score === 0
@@ -35,6 +42,23 @@ export default function TaskExp() {
     if (unfinishedTask.length > 0) {
       setError(true);
     } else {
+      //construct survey
+      let survey: SurveyType = {
+        userid,
+        taskcode: `${taskSet === "task_1" ? "A" : "B"}`,
+        answer: "",
+      };
+
+      if (taskSet === "task_1") {
+        survey.answer = taskOptions.map((i) => i.score).join("|");
+      } else if (taskSet === "task_2") {
+        survey.answer = taskOptions.map((i) => i.score).join("|");
+      }
+      console.log("survey", survey);
+
+      //API
+      const response = await API.post({ path: "/surveys", data: survey });
+
       router.push(getNextTaskUrl());
     }
   };
@@ -43,7 +67,7 @@ export default function TaskExp() {
     const value = Number(e.target.value);
     const taskNum = Number(e.target.id.split("-")[2]);
 
-    dispatch(updateTaskExpScore({ taskId, taskNum, score: value }));
+    dispatch(updateTaskExpScore({ taskSet, taskNum, score: value }));
   };
 
   return (
@@ -65,7 +89,7 @@ export default function TaskExp() {
         </div>
 
         {taskOptions?.map((task: TaskOptionType, i: number) => (
-          <Fragment key={`taskExp-${taskId}-${i + 1}`}>
+          <Fragment key={`taskExp-${taskSet}-${i + 1}`}>
             <p className={styles["survey-task-name"]}>{`${i + 1}.${
               task.name
             }`}</p>
@@ -80,6 +104,7 @@ export default function TaskExp() {
                   id={`score-1-${i}`}
                   name="score"
                   value="1"
+                  defaultChecked={task.score === 1 ? true : false}
                 />
               </div>
 
@@ -89,6 +114,7 @@ export default function TaskExp() {
                   id={`score-2-${i}`}
                   name="score"
                   value="2"
+                  defaultChecked={task.score === 2 ? true : false}
                 />
               </div>
 
@@ -98,6 +124,7 @@ export default function TaskExp() {
                   id={`score-3-${i}`}
                   name="score"
                   value="3"
+                  defaultChecked={task.score === 3 ? true : false}
                 />
               </div>
 
@@ -107,6 +134,7 @@ export default function TaskExp() {
                   id={`score-4-${i}`}
                   name="score"
                   value="4"
+                  defaultChecked={task.score === 4 ? true : false}
                 />
               </div>
 
@@ -116,6 +144,7 @@ export default function TaskExp() {
                   id={`score-5-${i}`}
                   name="score"
                   value="5"
+                  defaultChecked={task.score === 5 ? true : false}
                 />
               </div>
             </form>

@@ -5,6 +5,9 @@ import Close from "../Icon/Close";
 import { EquationState, hideEqua } from "../../redux/slices/equationSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { TextState, updateText } from "../../redux/slices/textSlice";
+import { RecordType, TaskIdType, TaskSetType } from "../../types";
+import { Router, useRouter } from "next/router";
+import { addRecord } from "../../redux/slices/recordSlice";
 
 interface AppProps {
   textId: keyof TextState;
@@ -12,7 +15,11 @@ interface AppProps {
 }
 
 function Equation({ textId, addRef }: AppProps) {
-  const dispatch = useDispatch();
+  const userid = useSelector((state: any) => state.user.userid);
+  const dispatch = useDispatch<any>();
+  const router = useRouter();
+  const taskSet: TaskSetType = router.pathname.split("/")[1] as TaskSetType;
+  const taskId: TaskIdType = router.pathname.split("/").at(-1) as TaskIdType;
   const isEquaOn: EquationState = useSelector(
     (state: any) => state.equation.on
   );
@@ -23,6 +30,15 @@ function Equation({ textId, addRef }: AppProps) {
     let val = input;
 
     dispatch(updateText({ textId, text: `${textAreaInput}${val}` }));
+
+    const record: RecordType = {
+      userid: userid,
+      taskcode: `${taskSet === "task_1" ? "A" : "B"}${taskId}`,
+      action: "addsymbol",
+      section: "answer",
+      createdat: new Date().toISOString(),
+    };
+    dispatch(addRecord({ record }));
   };
 
   return (

@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import {
   CurrentDataType,
+  RecordType,
   TaskIdType,
   TaskProgressOptionType,
   TaskProgressState,
@@ -15,8 +16,12 @@ import { isCurrentDataEmpty } from "./emptyChecker";
 import { finishTask } from "../../redux/slices/taskProgressSlice";
 import FinishTaskModal from "../Modals/FinishTaskModal/FinishTaskModal";
 import { toggleFTModal } from "../../redux/slices/modalSlice";
+import { addRecord } from "../../redux/slices/recordSlice";
+import { makeRecord } from "./makeRecord";
 
 function SideProgressBar() {
+  const userid = useSelector((state: any) => state.user.userid);
+  const notes = useSelector((state: any) => state.notes);
   const router = useRouter();
   const taskSet: TaskSetType = router.pathname.split("/")[1] as TaskSetType;
   const taskId: TaskIdType = router.pathname.split("/").at(-1) as TaskIdType;
@@ -24,7 +29,7 @@ function SideProgressBar() {
     (state: any) => state.taskProgress[taskSet]
   );
   const currentTask = taskOptions[Number(taskId) - 1];
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
 
   //get current data, it could be text(string), array(), or combined
   //because we need to conditionally render the submit button
@@ -101,15 +106,45 @@ function SideProgressBar() {
     }
   };
 
-  const submitHandler = () => {
+  const handleSubmit = () => {
     //redux set task state
     dispatch(finishTask({ taskSet, taskId }));
+
+    //Construct record
+    const record: RecordType = makeRecord({
+      userid,
+      taskId,
+      taskSet,
+      currentData,
+      notes,
+    });
+    dispatch(addRecord({ record }));
   };
 
   const nextUrlHandler = () => {
     let nextUrl: string = "";
     nextUrl = `/${taskSet}/${Number(taskId) + 1}`;
     router.push(nextUrl);
+    const record: RecordType = {
+      userid: userid,
+      taskcode: `${taskSet === "task_1" ? "A" : "B"}${taskId}`,
+      action: `transfer${taskId}${Number(taskId) + 1}`,
+      section: "system",
+      createdat: new Date().toISOString(),
+    };
+    dispatch(addRecord({ record }));
+  };
+
+  const handleTransfer = (id: string) => {
+    const record: RecordType = {
+      userid: userid,
+      taskcode: `${taskSet === "task_1" ? "A" : "B"}${taskId}`,
+      action: `transfer${taskId}${id}`,
+      section: "system",
+      createdat: new Date().toISOString(),
+    };
+
+    dispatch(addRecord({ record }));
   };
 
   return (
@@ -131,6 +166,7 @@ function SideProgressBar() {
                   <Link
                     href={`/${taskSet}/${task.id}`}
                     className={styles[progressChecker(task)]}
+                    onClick={() => handleTransfer(task.id)}
                   >
                     <h4 className={styles["sidenav-text"]}>{task.name}</h4>
                   </Link>
@@ -141,7 +177,7 @@ function SideProgressBar() {
 
           <div className={styles["sidenav-btns"]}>
             <Button
-              click={submitHandler}
+              click={handleSubmit}
               text="提交"
               type={
                 isCurrentDataEmpty(taskId, currentData) ? "inactive" : "primary"
