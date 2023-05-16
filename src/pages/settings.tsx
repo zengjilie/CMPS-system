@@ -38,17 +38,12 @@ export default function Settings() {
       setErrors(errors);
       console.log("error", errors);
     } else {
-      console.log("inputs", inputs);
-
       setLoading(true);
       // Update User Info
       const { Attributes: data }: { Attributes: UserType } = await API.patch({
         path: `/users?userid=${userid}`,
         data: inputs,
       });
-
-      // const data = response;
-      console.log(data);
 
       //update redux
       dispatch(
@@ -158,7 +153,6 @@ Settings.getLayout = function getLayout(page: React.ReactNode) {
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const cmpsToken = req.cookies["cmpsToken"];
   if (!cmpsToken) {
-    console.log("none");
     return {
       redirect: {
         destination: "/",

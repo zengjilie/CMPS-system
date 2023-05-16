@@ -13,7 +13,6 @@ export const addRecord = createAsyncThunk<any, any, { state: any }>(
     if (records.length >= LIMIT) {
       try {
         const response = await API.post({ path: "/records", data: records });
-        console.log(response);
       } catch (error) {
         console.log("Add record to db error: ", error);
       }
@@ -31,7 +30,6 @@ export const addLastRecord = createAsyncThunk<any, any, { state: any }>(
         path: "/records",
         data: [...records, record],
       });
-      console.log(response);
     } catch (error) {
       console.log("Add last record to db error: ", error);
     }
@@ -49,7 +47,6 @@ export const recordSlice = createSlice({
           if (state.length >= LIMIT) {
             return [payload.record];
           } else {
-            console.log(payload);
             return [...state, payload.record];
           }
         }

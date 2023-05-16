@@ -149,7 +149,6 @@ MPSASSurvey.getLayout = function getLayout(page: React.ReactNode) {
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const cmpsToken = req.cookies["cmpsToken"];
   if (!cmpsToken) {
-    console.log("none");
     return {
       redirect: {
         destination: "/",

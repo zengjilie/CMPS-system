@@ -38,7 +38,6 @@ export const API = {
     };
 
     const response = await Axios.request<T>(config);
-    console.log("response", response);
     return response.data;
   },
 };

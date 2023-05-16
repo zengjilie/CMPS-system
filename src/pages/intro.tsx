@@ -31,7 +31,12 @@ export default function Consent({ token }: any) {
           <br />
           <p>
             &nbsp; &nbsp; &nbsp; &nbsp;
-            请你认真阅读题目并完成作答。完成作答后一定要先点击“提交”然后才可以“点击下一题”进行作答。每个题目都可以多次提交答案，因此你可以随时返回修改之前的答案。
+            请你认真阅读题目并完成作答。完成作答后一定要先点击“提交”然后才可以“点击下一题”进行作答。在每个任务中，每个题目都可以多次提交答案，因此你可以随时返回修改之前的答案，但是点击“结束作答”后将不能修改答案。
+          </p>
+          <br />
+          <p>
+            &nbsp; &nbsp; &nbsp; &nbsp;
+            注意：作答过程中不能修改网址，也不能点击网页的后退键。如果不小心关闭了浏览器页面，再次打开浏览器输入网址即可继续作答。
           </p>
           <br />
           <p>北京师范大学创造性数学问题解决能力研究组</p>
@@ -55,7 +60,6 @@ Consent.getLayout = function getLayout(page: React.ReactNode) {
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const cmpsToken = req.cookies["cmpsToken"];
   if (!cmpsToken) {
-    console.log("none");
     return {
       redirect: {
         destination: "/",

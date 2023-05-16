@@ -42,8 +42,6 @@ function Signup() {
       setErrors(errors);
       console.log("error", errors);
     } else {
-      console.log("inputs", inputs);
-
       setLoading(true);
       // Get User Info, add user to db
       const { data }: { data: UserType } = await API.post({
@@ -51,9 +49,7 @@ function Signup() {
         data: inputs,
       });
 
-      console.log(data);
-      //set global fullname and userid
-
+      // Set global fullname and userid
       dispatch(
         setUserInfo({
           userclass: data.userclass,
