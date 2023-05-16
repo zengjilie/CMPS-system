@@ -6,11 +6,16 @@
   padding: 50px 0;
   position: relative;
   gap: 20px;
-
+  .warmup-text {
+    line-height: 20px;
+    height: 40px;
+  }
   .warmup-image {
     width: 100%;
     height: auto;
+    object-fit: contain;
   }
+
   .warmup-buttons {
     display: flex;
     gap: 20px;

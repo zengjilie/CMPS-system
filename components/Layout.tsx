@@ -4,8 +4,7 @@ import SideControllers from "./SideControllers/SideControllers";
 import SideProgressBar from "./SideProgressBar/SideProgressBar";
 import styles from "./Layout.module.scss";
 import { useRouter } from "next/router";
-import FinishTaskModal from "./Modals/FinishTaskModal/FinishTaskModal";
-import ChangeAnswerModal from "./Modals/ChangeAnswerModal/ChangeAnswerModal";
+import { ToastContainer } from "react-toastify";
 
 function Layout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -20,6 +19,18 @@ function Layout({ children }: { children: React.ReactNode }) {
           <main>{children}</main>
           <SideControllers />
         </div>
+        <ToastContainer
+          position="bottom-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
       </>
     );
   } else {

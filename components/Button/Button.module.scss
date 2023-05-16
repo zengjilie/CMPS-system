@@ -6,6 +6,7 @@
   color: white;
   border: 0;
   border-radius: 5px;
+  font-size: 14px;
 }
 
 .primary {
@@ -28,7 +29,6 @@
   cursor: pointer;
   text-align: left;
   max-width: 360px;
-  font-size: 1rem;
   &:hover {
     background: $accent-secondary;
   }

@@ -18,6 +18,8 @@ import FinishTaskModal from "../Modals/FinishTaskModal/FinishTaskModal";
 import { toggleFTModal } from "../../redux/slices/modalSlice";
 import { addRecord } from "../../redux/slices/recordSlice";
 import { makeRecord } from "./makeRecord";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function SideProgressBar() {
   const userid = useSelector((state: any) => state.user.userid);
@@ -93,7 +95,7 @@ function SideProgressBar() {
 
   // when click submit, check if this task is already finished, if true it means you are modify your answer, modal pops up
 
-  //check the progress of each task
+  // Check the progress of each task
   const progressChecker = (task: any) => {
     if (task.id === taskId) {
       return "current";
@@ -106,10 +108,12 @@ function SideProgressBar() {
     }
   };
 
+  // Submit answer
   const handleSubmit = () => {
     //redux set task state
     dispatch(finishTask({ taskSet, taskId }));
 
+    toast("成功提交答案! 请点击”下一题“。");
     //Construct record
     const record: RecordType = makeRecord({
       userid,
@@ -121,6 +125,7 @@ function SideProgressBar() {
     dispatch(addRecord({ record }));
   };
 
+  // Jump to next url
   const nextUrlHandler = () => {
     let nextUrl: string = "";
     nextUrl = `/${taskSet}/${Number(taskId) + 1}`;
@@ -135,6 +140,7 @@ function SideProgressBar() {
     dispatch(addRecord({ record }));
   };
 
+  // Jump to any task
   const handleTransfer = (id: string) => {
     const record: RecordType = {
       userid: userid,

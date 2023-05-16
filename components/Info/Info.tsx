@@ -341,7 +341,7 @@ function Info({ type }: { type: string }) {
               <small>晚间睡前检查火源是否熄灭，帐篷是否固定结实。</small>
             </>
           )}
-          {tentInfos[4].on && (
+          {tentInfos[4].on && taskId !== "6" && (
             <>
               <h5>帐篷介绍</h5>
               <table>
@@ -410,7 +410,7 @@ function Info({ type }: { type: string }) {
               <small>价格：表中所示价格为租赁一晚（不超过24h）的价格。</small>
             </>
           )}
-          {tentInfos[4].on && (
+          {tentInfos[4].on && taskId==="6" && (
             <>
               <h5>帐篷介绍</h5>
               <table>

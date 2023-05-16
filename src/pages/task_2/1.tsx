@@ -11,7 +11,7 @@ export default function Task21() {
     <div className={styles["task"]}>
       <div className={styles["task-question"]}>
         <h4>问题一</h4>
-        <p>根据右侧对话，请写出小乐要解决什么问题？</p>
+        <p>根据右侧对话，请写出班长要解决什么问题？</p>
       </div>
 
       <div className={styles["task-answer"]}>

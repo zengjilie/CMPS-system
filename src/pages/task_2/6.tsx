@@ -23,7 +23,8 @@ export default function Task26() {
       <div className={styles["task-question"]}>
         <h4>问题六</h4>
         <p>
-          露营活动当天，老板更新了帐篷的实际库存，又购入了一种新型帐篷D（见信息中心）。
+          露营活动当天，老板更新了帐篷的实际库存，又购入了一种新型帐篷D（见信息中心的
+          <strong>帐篷介绍</strong>）。
           请你设计一个租赁方案，并在下方方框内输入你的思路和计算过程，然后给出最佳方案。
         </p>
       </div>

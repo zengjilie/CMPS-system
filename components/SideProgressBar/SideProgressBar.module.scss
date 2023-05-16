@@ -66,7 +66,7 @@
 }
 
 .finished {
-  color: $accent-default;
+  color: $primary-300;
 }
 
 .unfinished {
@@ -77,6 +77,6 @@
 }
 
 .current {
-  color: $primary-300;
+  color: $accent-default;
   font-weight: bold;
 }

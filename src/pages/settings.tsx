@@ -56,7 +56,6 @@ export default function Settings() {
           fullname: data.fullname,
           grade: data.grade,
           school: data.school,
-          studentid: data.studentid,
           sex: data.sex,
           userid: data.userid,
         })
@@ -136,22 +135,6 @@ export default function Settings() {
         </fieldset>
         {errors.fullname && (
           <small className={styles.error}>{errors.fullname}</small>
-        )}
-
-        <fieldset>
-          <label htmlFor="studentid">学号</label>
-          <input
-            type="text"
-            id="studentid"
-            name="studentid"
-            placeholder={"请输入你的学号"}
-            value={inputs.studentid}
-            onChange={handleChange}
-            onKeyDown={() => setErrors({ ...errors, schoolId: "" })}
-          />
-        </fieldset>
-        {errors.studentid && (
-          <small className={styles.error}>{errors.studentid}</small>
         )}
 
         <button type="submit" className={styles["signup-btn"]}>
