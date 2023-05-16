@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { csesTaskType } from "../../types";
 import Button from "../../components/Button/Button";
 import { updateCSESScore } from "../../redux/slices/csesSlice";
+import { GetServerSideProps } from "next";
 
 export default function CSESsurvey() {
   const [error, setError] = useState<boolean>(false);
@@ -123,4 +124,18 @@ export default function CSESsurvey() {
 
 CSESsurvey.getLayout = function getLayout(page: React.ReactNode) {
   return <Layout>{page}</Layout>;
+};
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const cmpsToken = req.cookies["cmpsToken"];
+  if (!cmpsToken) {
+    console.log("none");
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  return { props: {} };
 };

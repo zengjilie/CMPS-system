@@ -6,6 +6,7 @@ import TextInput from "../../../components/TextInput/TextInput";
 import { useSelector } from "react-redux";
 import { DropdownRowType } from "../../../types";
 import Star from "../../../components/Icon/Star";
+import { GetServerSideProps } from "next";
 
 export default function Task15() {
   const text: string = useSelector((state: any) => state.text["task_1_5_b"]);
@@ -52,4 +53,18 @@ export default function Task15() {
 
 Task15.getLayout = function getLayout(page: React.ReactNode) {
   return <Layout>{page}</Layout>;
+};
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const cmpsToken = req.cookies["cmpsToken"];
+  if (!cmpsToken) {
+    console.log("none");
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  return { props: {} };
 };

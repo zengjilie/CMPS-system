@@ -5,6 +5,7 @@ import MultiSelect from "../../../components/MultiSelect/MultiSelect";
 import { msTaskType } from "../../../types";
 import { useSelector } from "react-redux";
 import HelperNote from "../../../components/HelperNote/HelperNote";
+import { GetServerSideProps } from "next";
 
 export default function Task13() {
   const options: msTaskType[] = useSelector(
@@ -30,4 +31,19 @@ export default function Task13() {
 
 Task13.getLayout = function getLayout(page: React.ReactNode) {
   return <Layout>{page}</Layout>;
+};
+
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const cmpsToken = req.cookies["cmpsToken"];
+  if (!cmpsToken) {
+    console.log("none");
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  return { props: {} };
 };

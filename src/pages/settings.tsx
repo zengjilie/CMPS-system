@@ -11,6 +11,7 @@ import { API } from "../../lib/api";
 import { setUserInfo } from "../../redux/slices/userSlice";
 import { ClipLoader } from "react-spinners";
 import Button from "../../components/Button/Button";
+import { GetServerSideProps } from "next";
 
 export default function Settings() {
   const { userInfo, userid } = useSelector((state: any) => state.user);
@@ -152,4 +153,18 @@ export default function Settings() {
 
 Settings.getLayout = function getLayout(page: React.ReactNode) {
   return <Layout>{page}</Layout>;
+};
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const cmpsToken = req.cookies["cmpsToken"];
+  if (!cmpsToken) {
+    console.log("none");
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  return { props: {} };
 };

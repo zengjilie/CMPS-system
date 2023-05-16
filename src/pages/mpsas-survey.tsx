@@ -7,6 +7,7 @@ import { updateMPSASScore } from "../../redux/slices/mpsasSlice";
 import Layout from "../../components/Layout";
 import Button from "../../components/Button/Button";
 import { API } from "../../lib/api";
+import { GetServerSideProps } from "next";
 
 export default function MPSASSurvey() {
   const userid = useSelector((state: any) => state.user.userid);
@@ -143,4 +144,18 @@ export default function MPSASSurvey() {
 
 MPSASSurvey.getLayout = function getLayout(page: React.ReactNode) {
   return <Layout>{page}</Layout>;
+};
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const cmpsToken = req.cookies["cmpsToken"];
+  if (!cmpsToken) {
+    console.log("none");
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  return { props: {} };
 };

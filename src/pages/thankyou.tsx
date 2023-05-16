@@ -2,6 +2,7 @@ import React from "react";
 import Layout from "../../components/Layout";
 import styles from "../../theme/page-styles/task.module.scss";
 import Celebrate from "../../components/Icon/Celebrate";
+import { GetServerSideProps } from "next";
 
 export default function ThankYou() {
   return (
@@ -15,4 +16,18 @@ export default function ThankYou() {
 
 ThankYou.getLayout = function getLayout(page: React.ReactNode) {
   return <Layout>{page}</Layout>;
+};
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const cmpsToken = req.cookies["cmpsToken"];
+  if (!cmpsToken) {
+    console.log("none");
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  return { props: {} };
 };

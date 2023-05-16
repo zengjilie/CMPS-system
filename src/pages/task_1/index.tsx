@@ -7,6 +7,7 @@ import Layout from "../../../components/Layout";
 import { useDispatch, useSelector } from "react-redux";
 import { RecordType } from "../../../types";
 import { addRecord } from "../../../redux/slices/recordSlice";
+import { GetServerSideProps } from "next";
 
 export default function Task1Intro() {
   const dispatch = useDispatch<any>();
@@ -51,4 +52,18 @@ export default function Task1Intro() {
 
 Task1Intro.getLayout = function getLayout(page: React.ReactNode) {
   return <Layout>{page}</Layout>;
+};
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const cmpsToken = req.cookies["cmpsToken"];
+  if (!cmpsToken) {
+    console.log("none");
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  return { props: {} };
 };

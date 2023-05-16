@@ -4,6 +4,7 @@ import styles from "../../../theme/page-styles/task.module.scss";
 import ScrollMenuController from "../../../components/ScrollMenuController/ScrollMenuController";
 import { ScrollRowType } from "../../../types";
 import { useSelector } from "react-redux";
+import { GetServerSideProps } from "next";
 
 export default function Task24() {
   const scrolls: ScrollRowType[] = useSelector(
@@ -28,4 +29,18 @@ export default function Task24() {
 
 Task24.getLayout = function getLayout(page: React.ReactNode) {
   return <Layout>{page}</Layout>;
+};
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const cmpsToken = req.cookies["cmpsToken"];
+  if (!cmpsToken) {
+    console.log("none");
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  return { props: {} };
 };

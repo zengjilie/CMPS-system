@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import Button from "../../components/Button/Button";
 import styles from "../../theme/page-styles/task.module.scss";
 import { useRouter } from "next/router";
+import { GetServerSideProps } from "next";
 
 export default function Consent({ token }: any) {
   const router = useRouter();
@@ -51,6 +52,16 @@ Consent.getLayout = function getLayout(page: React.ReactNode) {
   return <Layout>{page}</Layout>;
 };
 
-export async function getServerSideProps({ req, res }: any) {
-  return { props: { token: req.cookies.cmpsToken || "none" } };
-}
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const cmpsToken = req.cookies["cmpsToken"];
+  if (!cmpsToken) {
+    console.log("none");
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  return { props: {} };
+};

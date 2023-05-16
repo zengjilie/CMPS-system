@@ -7,8 +7,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     cookie.serialize("cmpsToken", req.body.token, {
       httpOnly: true,
       secure: process.env.NODE_ENV !== "development", // https
-      // maxAge: 60 * 60, // one hour
-      maxAge: 5, // 5 seconds
+      maxAge: 60 * 60 * 24, // 24 hours
       sameSite: "strict",
       path: "/",
     })

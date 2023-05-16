@@ -3,6 +3,7 @@ import Layout from "../../../components/Layout";
 import styles from "../../../theme/page-styles/task.module.scss";
 import TextInput from "../../../components/TextInput/TextInput";
 import { useSelector } from "react-redux";
+import { GetServerSideProps } from "next";
 
 export default function Task11() {
   const text: string = useSelector((state: any) => state.text["task_1_1_a"]);
@@ -28,4 +29,18 @@ export default function Task11() {
 
 Task11.getLayout = function getLayout(page: React.ReactNode) {
   return <Layout>{page}</Layout>;
+};
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const cmpsToken = req.cookies["cmpsToken"];
+  if (!cmpsToken) {
+    console.log("none");
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  return { props: {} };
 };

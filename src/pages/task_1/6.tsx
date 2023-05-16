@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { showEqua } from "../../../redux/slices/equationSlice";
 import Button from "../../../components/Button/Button";
 import { showCalc } from "../../../redux/slices/calculatorSlice";
+import { GetServerSideProps } from "next";
 
 export default function Task16() {
   const [input, setInput] = useState("");
@@ -82,4 +83,18 @@ export default function Task16() {
 
 Task16.getLayout = function getLayout(page: React.ReactNode) {
   return <Layout>{page}</Layout>;
+};
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const cmpsToken = req.cookies["cmpsToken"];
+  if (!cmpsToken) {
+    console.log("none");
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  return { props: {} };
 };
