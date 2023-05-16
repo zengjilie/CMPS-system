@@ -18,7 +18,9 @@ export default function Task23() {
           <h4>问题三</h4>
           <HelperNote text="点击一下选中，两下取消选中。" />
         </div>
-        <p>为了解决上述提出的问题，你认为需要考虑哪些条件（多选）？</p>
+        <p>
+          根据聊天记录和信息中心的已知信息，你认为需要考虑哪些条件（多选）？
+        </p>
       </div>
 
       <div className={styles["task-answer"]}>
