@@ -95,7 +95,7 @@ export default function TaskExp() {
                 task.name
               }`}</p>
               <img
-                src={`/survey-images/1_${i + 1}.png`}
+                src={`/survey-images/2_${i + 1}.png`}
                 className={styles["survey-task-image"]}
                 alt=""
               />
