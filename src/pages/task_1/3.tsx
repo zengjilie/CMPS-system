@@ -19,7 +19,9 @@ export default function Task13() {
           <h4>问题三</h4>
           <HelperNote text="点击一下选中，两下取消选中。" />
         </div>
-        <p>根据聊天记录和信息中心的已知信息，为了解决小乐的问题，你认为需要考虑哪些条件（多选）？</p>
+        <p>
+          根据聊天记录和信息中心的已知信息，为了解决小乐遇到的问题，你认为需要考虑哪些条件（多选）？
+        </p>
       </div>
 
       <div className={styles["task-answer"]}>
@@ -32,7 +34,6 @@ export default function Task13() {
 Task13.getLayout = function getLayout(page: React.ReactNode) {
   return <Layout>{page}</Layout>;
 };
-
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const cmpsToken = req.cookies["cmpsToken"];

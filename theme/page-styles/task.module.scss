@@ -71,13 +71,17 @@
       grid-template-columns: auto auto auto auto auto;
       p {
         margin: 0 10px;
+        white-space: nowrap;
       }
     }
 
     .survey-task-name {
       white-space: nowrap;
     }
-
+    .survey-task-image {
+      width: 100%;
+      height: auto;
+    }
     .survey-options {
       width: 100%;
       display: grid;

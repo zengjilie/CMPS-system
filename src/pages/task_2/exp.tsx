@@ -90,9 +90,16 @@ export default function TaskExp() {
 
         {taskOptions?.map((task: TaskOptionType, i: number) => (
           <Fragment key={`taskExp-${taskSet}-${i + 1}`}>
-            <p className={styles["survey-task-name"]}>{`${i + 1}.${
-              task.name
-            }`}</p>
+            <div>
+              <p className={styles["survey-task-name"]}>{`${i + 1}.${
+                task.name
+              }`}</p>
+              <img
+                src={`/survey-images/1_${i + 1}.png`}
+                className={styles["survey-task-image"]}
+                alt=""
+              />
+            </div>
             <form
               className={styles["survey-options"]}
               id={`survey-task-${i}`}

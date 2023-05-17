@@ -19,7 +19,7 @@ export default function Task15() {
       <div className={styles["task-question"]}>
         <h4>问题五</h4>
         <p>
-          请你从上述方案中选出最适合小乐要求的方案，在该方案前点亮{" "}
+          请你从上述方案中选出最符合小乐要求的方案，在该方案前点亮{" "}
           <Star width={20} height={20} stared={false} />
           ，并解释理由。
           <br />
