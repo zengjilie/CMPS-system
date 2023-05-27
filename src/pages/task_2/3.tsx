@@ -17,7 +17,7 @@ export default function Task23() {
       <div className={styles["task-question"]}>
         <div className={styles["task-question-header"]}>
           <h4>问题三</h4>
-          <HelperNote text="点击一下选中，两下取消选中。" />
+          <HelperNote text="单次点击选项以选中该选项，双次点击取消选中。" />
         </div>
         <p>
           根据聊天记录和信息中心的已知信息，为了解决班长遇到的问题，你认为需要考虑哪些条件（多选）？

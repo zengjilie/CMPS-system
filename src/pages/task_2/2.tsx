@@ -17,7 +17,7 @@ export default function Task22() {
       <div className={styles["task-question"]}>
         <div className={styles["task-question-header"]}>
           <h4>问题二</h4>
-          <HelperNote text="点击一下选中，两下取消选中。" />
+          <HelperNote text="单次点击选项以选中该选项，双次点击取消选中。" />
         </div>
 
         <p>

@@ -17,7 +17,7 @@ export default function Task12() {
       <div className={styles["task-question"]}>
         <div className={styles["task-question-header"]}>
           <h4>问题二</h4>
-          <HelperNote text="点击一下选中，两下取消选中。" />
+          <HelperNote text="单次点击选项以选中该选项，双次点击取消选中。" />
         </div>
         <p>
           为了解决上述提出的问题，小乐搜集整理了一些信息(见信息中心)，请你判断需要哪些信息呢（多选）？

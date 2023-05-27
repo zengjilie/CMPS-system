@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { RecordType, TaskIdType, TaskSetType } from "../../types";
 import { useDispatch, useSelector } from "react-redux";
 import { addRecord } from "../../redux/slices/recordSlice";
+import HelperNote from "../HelperNote/HelperNote";
 
 function InfoController() {
   const [chatToggle, setChatToggle] = useState(true); // check whether the section is chat or info
@@ -33,6 +34,7 @@ function InfoController() {
   return (
     <div className={styles["info-controller"]}>
       <div className={styles["info-header"]}>
+        <HelperNote text="可以拉动左侧竖条调整宽度。" />
         <h4
           className={chatToggle ? styles.on : styles.off}
           onClick={() => handleInfoClick()}

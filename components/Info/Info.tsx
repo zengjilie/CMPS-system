@@ -226,7 +226,7 @@ function Info({ type }: { type: string }) {
               </small>
             </>
           )}
-          {movieInfos[7].on && (
+          {movieInfos[7].on && taskId === "6" && (
             <>
               <h5>最喜爱电影排名调查结果</h5>
               <table>
@@ -410,7 +410,7 @@ function Info({ type }: { type: string }) {
               <small>价格：表中所示价格为租赁一晚（不超过24h）的价格。</small>
             </>
           )}
-          {tentInfos[4].on && taskId==="6" && (
+          {tentInfos[4].on && taskId === "6" && (
             <>
               <h5>帐篷介绍</h5>
               <table>

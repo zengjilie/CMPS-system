@@ -100,7 +100,7 @@ const initialState: mpsasState = {
       name: "当我的朋友遇到难题时，他们会要我帮助他们",
       score: 0,
     },
-    { taskId: "46", name: "我解决问题比我的朋友更快", score: 0 },
+    { taskId: "46", name: "我解决问题比我的朋友更慢", score: 0 },
     { taskId: "47", name: "家庭作业或考试中的问题对我来说很简单", score: 0 },
     { taskId: "48", name: "当老师问问题时，我知道这些问题的答案", score: 0 },
     { taskId: "49", name: "我的成绩比我的朋友更好", score: 0 },
