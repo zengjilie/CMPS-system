@@ -64,7 +64,8 @@ function Signup() {
 
       setLoading(false);
       //Direct the user to the next page
-      router.push("/intro");
+      // router.push("/intro");
+      router.push("/creative-survey");
     }
   };
 
