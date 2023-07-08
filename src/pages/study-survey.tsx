@@ -247,7 +247,7 @@ export default function AnxietySurvey() {
 
       <hr />
 
-      <label htmlFor="math-score">最近一次数学成绩</label>
+      <label htmlFor="math-score">最近一次数学考试的成绩(期中)</label>
       <input
         type="text"
         id="math-score"
@@ -259,7 +259,7 @@ export default function AnxietySurvey() {
 
       <hr />
 
-      <label htmlFor="chinese-score">最近一次语文成绩</label>
+      <label htmlFor="chinese-score">最近一次语文考试的成绩(期中)</label>
       <input
         type="text"
         id="chinese-score"
