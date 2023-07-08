@@ -9,13 +9,24 @@ import scrolls from "./slices/scrollSlice";
 import dropdowns from "./slices/dropdownSlice";
 import calculator from "./slices/calculatorSlice";
 import equation from "./slices/equationSlice";
-import cses from "./slices/csesSlice";
 import ms from "./slices/multiSelectSlice";
 import text from "./slices/textSlice";
 import taskExp from "./slices/taskExpSlice";
-import mpsas from "./slices/mpsasSlice";
 import modal from "./slices/modalSlice";
 import records from "./slices/recordSlice";
+import mpsaSurvey from "./slices/mpsaSurveySlice";
+import cseSurvey from "./slices/cseSurveySlice";
+import apSurvey from "./slices/apSurveySlice";
+import atSurvey from "./slices/atSurveySlice";
+import catoSurvey from "./slices/catoSurveySlice";
+import cmSurvey from "./slices/cmSurveySlice";
+import ctSurvey from "./slices/ctSurveySlice";
+import emoSurvey from "./slices/emoSurveySlice";
+import maSurvey from "./slices/maSurveySlice";
+import paSurvey from "./slices/paSurveySlice";
+import saSurvey from "./slices/saSurveySlice";
+import sfSurvey from "./slices/sfSurveySlice";
+import tsrSurvey from "./slices/tsrSurveySlice";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
@@ -29,13 +40,24 @@ const allReducers = combineReducers({
   dropdowns,
   calculator,
   equation,
-  cses,
   ms,
   text,
   taskExp,
-  mpsas,
   modal,
   records,
+  mpsaSurvey,
+  cseSurvey,
+  apSurvey,
+  atSurvey,
+  catoSurvey,
+  cmSurvey,
+  ctSurvey,
+  emoSurvey,
+  maSurvey,
+  paSurvey,
+  saSurvey,
+  sfSurvey,
+  tsrSurvey,
 });
 
 //config persist config

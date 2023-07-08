@@ -1,7 +1,9 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { csesState } from "../../types";
+import { SurveyState } from "../../types";
 
-const initialState: csesState = {
+// cses, aka creative self-efficacy survey
+
+const initialState: SurveyState = {
   allTasks: [
     {
       taskId: "1",
@@ -10,7 +12,7 @@ const initialState: csesState = {
     },
     {
       taskId: "2",
-      name: "我相信我的创造能力。",
+      name: "我相信我的创造力。",
       score: 0,
     },
     {
@@ -35,43 +37,38 @@ const initialState: csesState = {
     },
     {
       taskId: "7",
-      name: "我相信我可以处理需要创造性思维的问题",
-      score: 0,
-    },
-    {
-      taskId: "8",
       name: "我认为我是一个有创造力的人",
       score: 0,
     },
     {
-      taskId: "9",
+      taskId: "8",
       name: "创造力对我来说很重要",
       score: 0,
     },
     {
-      taskId: "10",
+      taskId: "9",
       name: "成为一个有创造力的人对我来说很重要",
       score: 0,
     },
     {
-      taskId: "11",
-      name: "创造力是我的重要的一部分",
+      taskId: "10",
+      name: "创造力是我的重要部分",
       score: 0,
     },
     {
-      taskId: "12",
+      taskId: "11",
       name: "对我来说，独创性是一个很重要的特点",
       score: 0,
     },
   ],
 };
 
-const csesSlice = createSlice({
+const cseSurveySlice = createSlice({
   name: "cses",
   initialState,
   reducers: {
     updateCSESScore: (
-      state: csesState,
+      state: SurveyState,
       { payload }: PayloadAction<{ taskId: string; score: number }>
     ) => {
       state.allTasks.map((task) => {
@@ -86,5 +83,5 @@ const csesSlice = createSlice({
   },
 });
 
-export const { updateCSESScore } = csesSlice.actions;
-export default csesSlice.reducer;
+export const { updateCSESScore } = cseSurveySlice.actions;
+export default cseSurveySlice.reducer;

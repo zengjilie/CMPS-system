@@ -1,6 +1,10 @@
 @use "../../theme/global-styles/color" as *;
 
 .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
   width: 100%;
   padding: 14px;
   color: white;

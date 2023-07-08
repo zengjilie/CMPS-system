@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { mpsasState } from "../../types";
+import { SurveyState } from "../../types";
 
-const initialState: mpsasState = {
+const initialState: SurveyState = {
   allTasks: [
     { taskId: "1", name: "在我试着理解问题时，会问许多相关问题", score: 0 },
     { taskId: "2", name: "我会从不同的角度来理解问题", score: 0 },
@@ -107,12 +107,12 @@ const initialState: mpsasState = {
   ],
 };
 
-const mpsasSlice = createSlice({
+const mpsaSurveySlice = createSlice({
   name: "mpsas",
   initialState,
   reducers: {
     updateMPSASScore: (
-      state: mpsasState,
+      state: SurveyState,
       {
         payload,
       }: PayloadAction<{
@@ -132,5 +132,5 @@ const mpsasSlice = createSlice({
   },
 });
 
-export const { updateMPSASScore } = mpsasSlice.actions;
-export default mpsasSlice.reducer;
+export const { updateMPSASScore } = mpsaSurveySlice.actions;
+export default mpsaSurveySlice.reducer;

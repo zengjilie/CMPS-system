@@ -20,8 +20,10 @@ function Layout({ children }: { children: React.ReactNode }) {
       alert("使用后退键将被视作违规1次！");
     };
 
-    window.addEventListener("beforeunload", handleBeforeUnload);
-    window.addEventListener("popstate", handleBackButton);
+    if (path !== "settings") {
+      window.addEventListener("beforeunload", handleBeforeUnload);
+      window.addEventListener("popstate", handleBackButton);
+    }
 
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
@@ -59,6 +61,18 @@ function Layout({ children }: { children: React.ReactNode }) {
         <div className={styles.container2}>
           <main>{children}</main>
         </div>
+        <ToastContainer
+          position="bottom-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
       </>
     );
   }

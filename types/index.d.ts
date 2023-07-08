@@ -89,16 +89,6 @@ export interface DropdownState {
   finalDropdown: DropdownRowType;
 }
 
-// csesSlice Type
-export interface csesTaskType {
-  taskId: string;
-  name: string;
-  score: number;
-}
-export interface csesState {
-  allTasks: csesTaskType[];
-}
-
 // Multiselect Type
 export interface msTaskType {
   optionId: string;
@@ -129,16 +119,6 @@ export interface TaskExpState {
   task_1: TaskExpType;
   task_2: TaskExpType;
   task_all: TaskExpType;
-}
-
-//mpsas survey type
-export interface mpsasTaskType {
-  taskId: string;
-  name: string;
-  score: number;
-}
-export interface mpsasState {
-  allTasks: mpsasTaskType[];
 }
 
 //Current page Data type
@@ -185,6 +165,25 @@ export interface RecordType {
 //SurveyType
 export interface SurveyType {
   userid: string;
-  taskcode: "A" | "B" | "ALL" | "MPSAS";
+  taskcode:
+    | "A"
+    | "B"
+    | "ALL"
+    | "MPSAS"
+    | "CSTM"
+    | "AT"
+    | "EMO"
+    | "AAP"
+    | "STSR";
   answer: string;
+}
+
+// Survey Task Type
+export interface SurveyTaskType {
+  taskId: string;
+  name: string;
+  score: number;
+}
+export interface SurveyState {
+  allTasks: surveyTaskType[];
 }

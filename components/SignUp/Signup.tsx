@@ -18,16 +18,15 @@ function Signup() {
   const dispatch = useDispatch();
 
   // Limited Options the user can select
-  const schools = ["A初中", "B初中"];
-  const grades = ["七年级", "八年级", "九年级"];
-  const classes = ["1班", "2班"];
+  const schools = ["A高中"];
+  const grades = ["高一", "高二"];
   const sexes = ["男", "女"];
 
   // Dynamically update inputs using useForm custom hook
   const { inputs, handleChange } = useForm({
     school: schools[0],
     grade: grades[0],
-    userclass: classes[0],
+    userclass: "",
     fullname: "",
     sex: sexes[0],
   });
@@ -105,14 +104,19 @@ function Signup() {
 
             <fieldset>
               <label htmlFor="userclass">班级</label>
-              <select id="userclass" name="userclass" onChange={handleChange}>
-                {classes.map((claz, id) => (
-                  <option key={id} value={claz}>
-                    {claz}
-                  </option>
-                ))}
-              </select>
+              <input
+                type="text"
+                id="userclass"
+                name="userclass"
+                placeholder={"请输入你的班级"}
+                value={inputs.userclass}
+                onChange={handleChange}
+                onKeyDown={() => setErrors({ ...errors, userclass: "" })}
+              />
             </fieldset>
+            {errors.fullname && (
+              <small className={styles.error}>{errors.userclass}</small>
+            )}
 
             <fieldset>
               <label htmlFor="sex">性别</label>

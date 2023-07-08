@@ -10,6 +10,8 @@ import {
 } from "../../types";
 import Layout from "../../components/Layout";
 import Button from "../../components/Button/Button";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { updateTaskExpScore } from "../../redux/slices/taskExpSlice";
 import { API } from "../../lib/api";
 import { GetServerSideProps } from "next";
@@ -17,6 +19,7 @@ import { GetServerSideProps } from "next";
 export default function TaskExp() {
   const userid = useSelector((state: any) => state.user.userid);
   const [error, setError] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -42,9 +45,15 @@ export default function TaskExp() {
       survey.answer = taskOptions.map((i) => i.score).join("|");
 
       //API
-      const response = await API.post({ path: "/surveys", data: survey });
-
-      router.push("/mpsas-survey");
+      try {
+        setIsLoading(true);
+        const response = await API.post({ path: "/surveys", data: survey });
+        toast("成功提交问卷!");
+        setIsLoading(false);
+        router.push("/mpsas-survey");
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -63,7 +72,7 @@ export default function TaskExp() {
 
       <div className={styles["survey"]}>
         <p></p>
-        <div className={styles["survey-scale"]}>
+        <div className={styles["survey--grid-5"]}>
           <p>完全不同意</p>
           <p>有点不同意</p>
           <p>不确定</p>
@@ -77,11 +86,11 @@ export default function TaskExp() {
               task.name
             }`}</p>
             <form
-              className={styles["survey-options"]}
+              className={styles["survey--grid-5"]}
               id={`survey-task-${i}`}
               onChange={(e: any) => onChangeValue(e)}
             >
-              <div className={styles["survey-option"]}>
+              <div className={styles["survey--grid-5--item"]}>
                 <input
                   type="radio"
                   id={`score-1-${i}`}
@@ -91,7 +100,7 @@ export default function TaskExp() {
                 />
               </div>
 
-              <div className={styles["survey-option"]}>
+              <div className={styles["survey--grid-5--item"]}>
                 <input
                   type="radio"
                   id={`score-2-${i}`}
@@ -101,7 +110,7 @@ export default function TaskExp() {
                 />
               </div>
 
-              <div className={styles["survey-option"]}>
+              <div className={styles["survey--grid-5--item"]}>
                 <input
                   type="radio"
                   id={`score-3-${i}`}
@@ -111,7 +120,7 @@ export default function TaskExp() {
                 />
               </div>
 
-              <div className={styles["survey-option"]}>
+              <div className={styles["survey--grid-5--item"]}>
                 <input
                   type="radio"
                   id={`score-4-${i}`}
@@ -121,7 +130,7 @@ export default function TaskExp() {
                 />
               </div>
 
-              <div className={styles["survey-option"]}>
+              <div className={styles["survey--grid-5--item"]}>
                 <input
                   type="radio"
                   id={`score-5-${i}`}
@@ -139,6 +148,8 @@ export default function TaskExp() {
         click={handleClick}
         text="提交"
         type="primary"
+        clip={true}
+        isClipLoading={isLoading}
       />
       <br />
       {error && <small className={styles.error}>请回答以上所有问题!!!</small>}

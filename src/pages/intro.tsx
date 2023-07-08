@@ -10,7 +10,8 @@ import { GetServerSideProps } from "next";
 export default function Consent({ token }: any) {
   const router = useRouter();
   const handleClick = () => {
-    router.push("/warmup");
+    // router.push("/warmup");
+    router.push("/creative-survey");
   };
   return (
     <>

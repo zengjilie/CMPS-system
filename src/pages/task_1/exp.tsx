@@ -13,10 +13,13 @@ import Button from "../../../components/Button/Button";
 import { updateTaskExpScore } from "../../../redux/slices/taskExpSlice";
 import { API } from "../../../lib/api";
 import { GetServerSideProps } from "next";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function TaskExp() {
   const [error, setError] = useState<boolean>(false);
   const userid = useSelector((state: any) => state.user.userid);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
   const path: string = router.asPath;
   const taskSet: keyof TaskExpState = path.split("/")[1] as keyof TaskExpState;
@@ -58,8 +61,15 @@ export default function TaskExp() {
       }
 
       //API
-      const response = await API.post({ path: "/surveys", data: survey });
-      router.push(getNextTaskUrl());
+      try {
+        setIsLoading(true);
+        const response = await API.post({ path: "/surveys", data: survey });
+        toast("成功提交问卷!");
+        setIsLoading(false);
+        router.push(getNextTaskUrl());
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -79,7 +89,7 @@ export default function TaskExp() {
       </p>
       <div className={styles["survey"]}>
         <p></p>
-        <div className={styles["survey-scale"]}>
+        <div className={styles["survey--grid-5"]}>
           <p>完全不同意</p>
           <p>有点不同意</p>
           <p>不确定</p>
@@ -90,21 +100,21 @@ export default function TaskExp() {
         {taskOptions?.map((task: TaskOptionType, i: number) => (
           <Fragment key={`taskExp-${taskSet}-${i + 1}`}>
             <div>
-              <p className={styles["survey-task-name"]}>{`${i + 1}.${
+              <p className={styles["survey--task-name"]}>{`${i + 1}.${
                 task.name
               }`}</p>
               <img
                 src={`/survey-images/1_${i + 1}.png`}
-                className={styles["survey-task-image"]}
+                className={styles["survey--task-image"]}
                 alt=""
               />
             </div>
             <form
-              className={styles["survey-options"]}
+              className={styles["survey--grid-5"]}
               id={`survey-task-${i}`}
               onChange={(e: any) => onChangeValue(e)}
             >
-              <div className={styles["survey-option"]}>
+              <div className={styles["survey--grid-5--item"]}>
                 <input
                   type="radio"
                   id={`score-1-${i}`}
@@ -114,7 +124,7 @@ export default function TaskExp() {
                 />
               </div>
 
-              <div className={styles["survey-option"]}>
+              <div className={styles["survey--grid-5--item"]}>
                 <input
                   type="radio"
                   id={`score-2-${i}`}
@@ -124,7 +134,7 @@ export default function TaskExp() {
                 />
               </div>
 
-              <div className={styles["survey-option"]}>
+              <div className={styles["survey--grid-5--item"]}>
                 <input
                   type="radio"
                   id={`score-3-${i}`}
@@ -134,7 +144,7 @@ export default function TaskExp() {
                 />
               </div>
 
-              <div className={styles["survey-option"]}>
+              <div className={styles["survey--grid-5--item"]}>
                 <input
                   type="radio"
                   id={`score-4-${i}`}
@@ -144,7 +154,7 @@ export default function TaskExp() {
                 />
               </div>
 
-              <div className={styles["survey-option"]}>
+              <div className={styles["survey--grid-5--item"]}>
                 <input
                   type="radio"
                   id={`score-5-${i}`}
@@ -162,6 +172,8 @@ export default function TaskExp() {
         click={handleClick}
         text="提交"
         type="primary"
+        clip={true}
+        isClipLoading={isLoading}
       />
       <br />
       {error && <small className={styles.error}>请回答以上所有问题!!!</small>}

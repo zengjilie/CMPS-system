@@ -8,7 +8,6 @@ import {
   RecordType,
   TaskIdType,
   TaskProgressOptionType,
-  TaskProgressState,
   TaskSetType,
 } from "../../types";
 import Button from "../Button/Button";
@@ -18,7 +17,7 @@ import FinishTaskModal from "../Modals/FinishTaskModal/FinishTaskModal";
 import { toggleFTModal } from "../../redux/slices/modalSlice";
 import { addRecord } from "../../redux/slices/recordSlice";
 import { makeRecord } from "./makeRecord";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function SideProgressBar() {
