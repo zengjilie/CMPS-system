@@ -62,7 +62,7 @@ const ctSurveySlice = createSlice({
   initialState,
   reducers: {
     updateCTSScore: (
-      state: surveyState,
+      state: SurveyState,
       {
         payload,
       }: PayloadAction<{
