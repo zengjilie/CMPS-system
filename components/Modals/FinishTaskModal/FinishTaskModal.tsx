@@ -31,7 +31,8 @@ function FinishTaskModal() {
     }
 
     dispatch(toggleFTModal());
-    router.push(`/${taskSet}/exp`);
+    // router.push(`/${taskSet}/exp`);
+    router.push("/creative-survey");
   };
   return (
     <>

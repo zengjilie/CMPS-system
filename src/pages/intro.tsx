@@ -10,8 +10,8 @@ import { GetServerSideProps } from "next";
 export default function Consent({ token }: any) {
   const router = useRouter();
   const handleClick = () => {
-    // router.push("/warmup");
-    router.push("/creative-survey");
+    router.push("/warmup");
+    // router.push("/creative-survey");
   };
   return (
     <>
@@ -27,12 +27,12 @@ export default function Consent({ token }: any) {
           <br />
           <p>
             &nbsp; &nbsp; &nbsp; &nbsp;
-            欢迎你参加数学问题解决能力测试。本次测试旨在通过两个任务测试你在数学解决问题方面的创造力。测试时间约为60-70分钟。
+            欢迎你参加数学问题解决能力测试。本次测试旨在测试你在数学解决问题方面的创造力。测试时间约为30-40分钟。
           </p>
           <br />
           <p>
             &nbsp; &nbsp; &nbsp; &nbsp;
-            请你认真阅读题目并完成作答。完成作答后一定要先点击“提交”然后才可以“点击下一题”进行作答。在每个任务中，每个题目都可以多次提交答案，因此你可以随时返回修改之前的答案，但是点击“结束作答”后将不能修改答案。
+            请你认真阅读题目并完成作答。完成作答后一定要先点击“提交”然后才可以点击“下一题”进行作答。在每个任务中，每个题目都可以多次提交答案，因此你可以随时返回修改之前的答案，但是点击“结束作答”后将不能修改答案。
           </p>
           <br />
           <p>

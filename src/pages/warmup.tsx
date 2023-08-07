@@ -17,18 +17,18 @@ export default function Warmup() {
   const dispatch = useDispatch<Dispatch<any>>();
 
   const handleNext = () => {
-    const record: RecordType = {
-      userid: userid,
-      taskcode: "A0",
-      action: "systemstart",
-      section: "system",
-      createdat: new Date().toISOString(),
-    };
-
-    dispatch(addRecord({ record }));
-
-    router.push("/task_1");
+    //   const record: RecordType = {
+    //     userid: userid,
+    //     taskcode: "A0",
+    //     action: "systemstart",
+    //     section: "system",
+    //     createdat: new Date().toISOString(),
+    //   };
+    //   dispatch(addRecord({ record }));
+    //   router.push("/task_1");
+    router.push("/chose");
   };
+
   return (
     <div className={styles["warmup"]}>
       <h2 className={styles["warmup-header"]}>系统简介</h2>
@@ -37,7 +37,8 @@ export default function Warmup() {
           "答题进度条，深灰色代表该题已经完成作答, 紫色代表当前题目, 浅灰色代表该题尚未完成作答。若要修改已经完成作答的题目点击该题目即可，如正在作答问题六，但是想修改问题五，只需要点击“问题五”。"}
         {imageId === 1 &&
           "答题进度条包含“提交”和“下一题”两个按键。回答问题后“提交”键变成紫色可以点击，点击提交答案后”下一题“键变成紫色可以点击。"}
-        {imageId === 2 && "多选题，单次点击选项以选中该选项，再次点击取消选中。"}
+        {imageId === 2 &&
+          "多选题，单次点击选项以选中该选项，再次点击取消选中。"}
         {imageId === 3 && "文本作答框有字数限制。"}
         {imageId === 4 && "聊天记录可以上下滚动查看。"}
         {imageId === 5 && "信息中心，点击左侧的导航栏可以查看不同的信息。"}

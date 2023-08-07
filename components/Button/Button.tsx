@@ -10,6 +10,8 @@ interface AppProps {
   text: string;
   clip?: boolean;
   isClipLoading?: boolean;
+  size?: string;
+  image?: string;
 }
 function Button({
   className,
@@ -18,11 +20,15 @@ function Button({
   type,
   clip,
   isClipLoading,
+  size,
+  image,
 }: AppProps) {
   const dispatch = useDispatch();
   return (
     <button
-      className={`${className} ${styles["btn"]} ${styles[`${type}`]}`}
+      className={`${className} ${styles["btn"]} ${styles[`${size}`]} ${
+        styles[`${type}`]
+      }`}
       onClick={() => click()}
     >
       {text}

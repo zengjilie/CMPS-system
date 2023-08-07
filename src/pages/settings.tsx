@@ -20,8 +20,8 @@ export default function Settings() {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const schools = ["A高中"];
-  const grades = ["高一", "高二"];
+  const schools = ["A中学", "B中学"];
+  const grades = ["初一","初二","初三","高一", "高二","高三"];
   const sexes = ["男", "女"];
 
   const { inputs, handleChange } = useForm({

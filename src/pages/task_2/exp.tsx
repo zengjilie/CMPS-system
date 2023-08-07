@@ -30,12 +30,13 @@ export default function TaskExp() {
   );
 
   const getNextTaskUrl = (): string => {
-    if (taskSet === "task_1") {
-      return "/task_2";
-    } else if (taskSet === "task_2") {
-      return "/task_all";
-    }
-    return "";
+    // if (taskSet === "task_1") {
+    //   return "/task_2";
+    // } else if (taskSet === "task_2") {
+    //   return "/task_all";
+    // }
+    // return "";
+    return "/creative-survey";
   };
 
   const handleClick = async () => {

@@ -18,8 +18,8 @@ function Signup() {
   const dispatch = useDispatch();
 
   // Limited Options the user can select
-  const schools = ["A高中"];
-  const grades = ["高一", "高二"];
+  const schools = ["A中学", "B中学"];
+  const grades = ["初一", "初二", "初三", "高一", "高二", "高三"];
   const sexes = ["男", "女"];
 
   // Dynamically update inputs using useForm custom hook
@@ -64,8 +64,8 @@ function Signup() {
 
       setLoading(false);
       //Direct the user to the next page
-      // router.push("/intro");
-      router.push("/creative-survey");
+      router.push("/intro");
+      // router.push("/creative-survey");
     }
   };
 
