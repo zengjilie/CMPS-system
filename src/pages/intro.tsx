@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import Head from "next/head";
 import Layout from "../../components/Layout";
-import { useDispatch } from "react-redux";
 import Button from "../../components/Button/Button";
 import styles from "../../theme/page-styles/task.module.scss";
 import { useRouter } from "next/router";

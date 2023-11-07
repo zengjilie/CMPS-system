@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Delete from "../Icon/Delete";
 import styles from "./NoteCard.module.scss";
 import { useDispatch, useSelector } from "react-redux";

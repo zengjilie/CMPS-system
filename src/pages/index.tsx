@@ -1,6 +1,5 @@
+import React from "react";
 import Head from "next/head";
-import Image from "next/image";
-import { useForm } from "../../lib/hooks/useForm";
 import Signup from "../../components/SignUp/Signup";
 
 export default function Home() {

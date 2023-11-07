@@ -1,8 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import Layout from "../../../components/Layout";
 
 import styles from "../../../theme/page-styles/task.module.scss";
-import DropdownMenuController from "../../../components/DropdownMenuController/DropdownMenuController";
 import TextInput from "../../../components/TextInput/TextInput";
 import Calculator from "../../../components/Calculator/Calculator";
 import Equation from "../../../components/Equation/Equation";

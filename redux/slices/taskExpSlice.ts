@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { TaskExpState, TaskSetType } from "../../types";
+import { TaskExpState } from "../../types";
 
 const initialState: TaskExpState = {
   task_1: {

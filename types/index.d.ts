@@ -5,7 +5,7 @@ export interface UserState {
 }
 //Task Type
 export interface TaskProgressType {
-  id: stirng;
+  id: string;
   name: string;
   finished: boolean;
   current: boolean;
@@ -185,5 +185,5 @@ export interface SurveyTaskType {
   score: number;
 }
 export interface SurveyState {
-  allTasks: surveyTaskType[];
+  allTasks: SurveyTaskType[];
 }

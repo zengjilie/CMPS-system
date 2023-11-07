@@ -1,6 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { UserState } from "../../types";
-import { API } from "../../lib/api";
 
 const initialState: UserState = {
   userInfo: {

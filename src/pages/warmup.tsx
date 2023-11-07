@@ -4,9 +4,7 @@ import Layout from "../../components/Layout";
 import Button from "../../components/Button/Button";
 import { useRouter } from "next/router";
 import Delete from "../../components/Icon/Delete";
-import { RecordType } from "../../types";
 import { useDispatch, useSelector } from "react-redux";
-import { addRecord } from "../../redux/slices/recordSlice";
 import { Dispatch } from "@reduxjs/toolkit";
 import { GetServerSideProps } from "next";
 

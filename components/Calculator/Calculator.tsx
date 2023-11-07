@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useState } from "react";
 import Display from "./Display";
 import Buttons from "./Buttons";
 import styles from "./Calculator.module.scss";

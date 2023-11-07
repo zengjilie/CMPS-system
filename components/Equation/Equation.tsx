@@ -6,7 +6,7 @@ import { EquationState, hideEqua } from "../../redux/slices/equationSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { TextState, updateText } from "../../redux/slices/textSlice";
 import { RecordType, TaskIdType, TaskSetType } from "../../types";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { addRecord } from "../../redux/slices/recordSlice";
 
 interface AppProps {
@@ -113,23 +113,23 @@ function Equation({ textId, addRef }: AppProps) {
               <button
                 className={styles["sign"]}
                 onClick={(e: any) => inputHanlder(e)}
-              >{`>`}</button>
+              >{">"}</button>
               <button
                 className={styles["sign"]}
                 onClick={(e: any) => inputHanlder(e)}
-              >{`<`}</button>
+              >{"<"}</button>
               <button
                 className={styles["sign"]}
                 onClick={(e: any) => inputHanlder(e)}
-              >{`<=`}</button>
+              >{"<="}</button>
               <button
                 className={styles["sign"]}
                 onClick={(e: any) => inputHanlder(e)}
-              >{`>=`}</button>
+              >{">="}</button>
               <button
                 className={styles["sign"]}
                 onClick={(e: any) => inputHanlder(e)}
-              >{`>=`}</button>
+              >{">="}</button>
               <button
                 className={styles["sign"]}
                 onClick={(e: any) => inputHanlder(e)}

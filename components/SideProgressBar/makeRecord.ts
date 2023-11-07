@@ -1,4 +1,4 @@
-import { CurrentDataType, NoteState, NoteType, RecordType } from "../../types";
+import { CurrentDataType, NoteState, RecordType } from "../../types";
 import { dropdownHeader } from "../../redux/slices/dropdownSlice";
 
 export const makeRecord = ({

@@ -3,7 +3,6 @@ import styles from "./Display.module.scss";
 import Close from "../Icon/Close";
 import { useDispatch } from "react-redux";
 import { hideCalc } from "../../redux/slices/calculatorSlice";
-import { hideEqua } from "../../redux/slices/equationSlice";
 
 interface AppProps {
   input: string;

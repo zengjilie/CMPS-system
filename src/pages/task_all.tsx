@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import {
   SurveyType,
-  TaskExpState,
   TaskExpType,
   TaskOptionType,
 } from "../../types";

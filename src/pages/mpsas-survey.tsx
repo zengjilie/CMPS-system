@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import styles from "../../theme/page-styles/task.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { SurveyTaskType, SurveyState, SurveyType } from "../../types";
+import { SurveyTaskType, SurveyType } from "../../types";
 import { useRouter } from "next/router";
 import { updateMPSASScore } from "../../redux/slices/mpsaSurveySlice";
 import Layout from "../../components/Layout";

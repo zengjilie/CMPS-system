@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "./NotesController.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { NoteType, RecordType, TaskIdType, TaskSetType } from "../../types";

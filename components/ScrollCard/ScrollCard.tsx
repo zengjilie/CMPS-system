@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { ScrollHeaderType, ScrollRowType } from "../../types";
 import styles from "./ScrollCard.module.scss";
 import { useDispatch } from "react-redux";

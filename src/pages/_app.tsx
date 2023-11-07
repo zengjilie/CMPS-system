@@ -1,3 +1,4 @@
+import React from "react";
 import "../../theme/main.scss";
 import type { AppProps } from "next/app";
 import { wrapper } from "../../redux/store";

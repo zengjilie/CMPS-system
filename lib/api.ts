@@ -1,8 +1,6 @@
 import Axios, { AxiosRequestConfig } from "axios";
-import { UserType } from "../types";
 
-const BASE_URL =
-  "https://xqvgyy0ll7.execute-api.ap-northeast-1.amazonaws.com/prod";
+const BASE_URL = process.env.API_END_POINT || "";
 
 interface RequestType {
   path: string;

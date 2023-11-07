@@ -1,5 +1,5 @@
 import { Store, combineReducers, configureStore } from "@reduxjs/toolkit";
-import { MakeStore, createWrapper, Context, HYDRATE } from "next-redux-wrapper";
+import { createWrapper, Context, HYDRATE } from "next-redux-wrapper";
 import taskProgress from "./slices/taskProgressSlice";
 import user from "./slices/userSlice";
 import movieInfo from "./slices/movieInfoSlice";
