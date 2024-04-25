@@ -43,11 +43,11 @@ function Signup() {
     } else {
       setLoading(true);
       // Get User Info, add user to db
-      const { data }: { data: UserType } = await API.post({
-        path: "/users",
-        data: inputs,
-      });
-
+      // const { data }: { data: UserType } = await API.post({
+      //   path: "/users",
+      //   data: inputs,
+      // });
+      const data = inputs;
       // Set global fullname and userid
       dispatch(
         setUserInfo({
@@ -57,7 +57,7 @@ function Signup() {
           school: data.school,
           sex: data.sex,
           userid: data.userid,
-        })
+        }),
       );
       //set cookie, cookie only last for 2 hours
       setTokenCookie();
